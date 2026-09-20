@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>CONCLAIVE™ — Stay with the question.</title>
+<meta name="description" content="CONCLAIVE is an intelligence environment for difficult decisions. Stay with the question.">
+<style>
+:root{
+  --bg:#07090a;--bg2:#0a0d0e;--ink:#f4f5f3;--muted:#9ba3a4;--faint:#596163;
+  --line:rgba(255,255,255,.11);--line2:rgba(255,255,255,.055);
+  --a:#8be0d8;--b:#9fc9dc;--c:#bfdcf0;--max:1180px;
+  --grad:linear-gradient(90deg,var(--a) 0%,var(--b) 52%,var(--c) 100%);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
+button,input,textarea{font:inherit}button{color:inherit}a{text-decoration:none;color:inherit}
+.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+header{height:68px;position:sticky;top:0;z-index:50;background:rgba(7,9,10,.76);backdrop-filter:blur(18px);border-bottom:1px solid var(--line2)}
+nav{height:100%;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:15px;font-weight:800;letter-spacing:.15em}.logo .ai{font-weight:950;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav{display:flex;gap:25px;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.13em}.nav a:hover{color:#fff}
+.hero{min-height:calc(100vh - 68px);display:grid;align-items:center;border-bottom:1px solid var(--line2);position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;width:850px;height:850px;left:-460px;bottom:-540px;border-radius:50%;background:radial-gradient(circle,rgba(159,201,220,.08),transparent 68%);pointer-events:none}
+.hero:after{content:"";position:absolute;width:760px;height:760px;right:-260px;top:-280px;border-radius:50%;background:radial-gradient(circle,rgba(139,224,216,.11),transparent 67%);pointer-events:none}
+.kicker{font:600 10px/1.2 ui-monospace,monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--a);margin-bottom:25px}
+.hero h1{font-size:clamp(66px,11.8vw,150px);line-height:.84;letter-spacing:-.07em;margin:0 0 30px;font-weight:760;max-width:960px}
+.hero h1 .gradient{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:950}
+.hero p{font-size:clamp(21px,2.35vw,30px);line-height:1.15;letter-spacing:-.025em;color:#d9dedd;max-width:760px;margin:0}
+.hero-bottom{display:flex;gap:18px;align-items:center;margin-top:42px}
+.btn{border:1px solid rgba(139,224,216,.45);background:rgba(139,224,216,.055);padding:13px 17px;border-radius:999px;cursor:pointer;font-size:11px;letter-spacing:.1em;text-transform:uppercase}.btn:hover{background:rgba(139,224,216,.11)}
+.btn:disabled{opacity:.45;cursor:wait}.ghost{border-color:var(--line);background:transparent;color:var(--muted)}
+section{padding:105px 0;border-bottom:1px solid var(--line2);position:relative}
+.section-no{font:600 10px ui-monospace,monospace;color:var(--a);letter-spacing:.15em;margin-bottom:18px}.section-grid{display:grid;grid-template-columns:240px 1fr;gap:70px}
+.label{font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:var(--faint)}
+h2{font-size:clamp(43px,6vw,76px);line-height:.92;letter-spacing:-.055em;margin:0 0 26px;font-weight:730}h3{font-size:22px;letter-spacing:-.025em;margin:0 0 8px}
+.lead{font-size:22px;line-height:1.28;color:#d0d5d4;max-width:850px}.copy{font-size:15px;color:var(--muted);max-width:850px}
+.manifesto{font-size:clamp(31px,5vw,60px);line-height:1;letter-spacing:-.05em;max-width:1000px}.manifesto .gradient{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.demo{background:linear-gradient(180deg,#080b0b,#07090a)}
+.demo-head{display:flex;justify-content:space-between;align-items:end;gap:30px}.demo-note{max-width:440px;color:var(--muted);font-size:13px}
+.prompt-shell{margin-top:40px;border:1px solid var(--line);background:rgba(255,255,255,.012)}
+.prompt-top{padding:12px 18px;border-bottom:1px solid var(--line2);display:flex;justify-content:space-between;align-items:center}.prompt-title{font:600 10px ui-monospace,monospace;letter-spacing:.14em;color:var(--a)}
+textarea{width:100%;min-height:165px;resize:vertical;background:transparent;border:0;outline:0;color:#fff;padding:28px 22px;font-size:24px;line-height:1.25;letter-spacing:-.025em}textarea::placeholder{color:#5d6667}
+.demo-actions{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line2);padding:14px 18px}.demo-status{font:600 10px ui-monospace,monospace;letter-spacing:.12em;color:var(--faint)}
+.progress{height:2px;background:rgba(255,255,255,.05);margin-top:30px}.progress span{display:block;height:100%;width:0;background:var(--grad);transition:width .55s ease}
+.stages{display:grid;grid-template-columns:repeat(6,1fr);margin-top:15px}.stage{padding:13px 0;border-top:1px solid transparent;color:var(--faint);font-size:10px;letter-spacing:.12em;text-transform:uppercase}.stage.on{color:var(--a);border-top-color:var(--a)}
+.output{margin-top:45px;min-height:260px;display:grid;grid-template-columns:170px 1fr;gap:30px}.output-index{font:700 12px ui-monospace,monospace;color:var(--a)}.output-title{font-size:32px;letter-spacing:-.035em;margin-bottom:13px}.output-text{font-size:17px;line-height:1.45;color:#c8cecc;max-width:780px}.output-meta{margin-top:22px;font:11px ui-monospace,monospace;color:var(--faint)}
+.room{margin-top:38px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.room-head{display:grid;grid-template-columns:150px 1fr 160px;gap:20px;padding:14px 0;border-bottom:1px solid var(--line2);font:600 10px ui-monospace,monospace;letter-spacing:.12em;color:var(--faint);text-transform:uppercase}
+.seat{display:grid;grid-template-columns:150px 1fr 160px;gap:20px;padding:22px 0;border-bottom:1px solid var(--line2)}.seat:last-child{border-bottom:0}.seat-id{font:600 10px ui-monospace,monospace;color:var(--a)}.seat-name{font-size:21px;letter-spacing:-.02em}.seat-role{color:var(--muted);font-size:13px}.seat-state{font:10px ui-monospace,monospace;color:var(--faint);letter-spacing:.1em;text-transform:uppercase}
+.callout{border-left:1px solid var(--a);padding-left:24px;margin-top:38px}.callout strong{color:#fff}.callout .quote{font-size:27px;line-height:1.08;letter-spacing:-.035em;max-width:850px;margin-top:6px}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:50px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.col{padding:28px}.col+.col{border-left:1px solid var(--line)}.col h3{font-size:14px;text-transform:uppercase;letter-spacing:.12em}.col .sub{color:var(--faint);font-size:11px;margin-bottom:25px}.row{padding:15px 0;border-top:1px solid var(--line2);font-size:14px;color:var(--muted)}.row b{display:block;color:#f1f3f2;margin-bottom:3px}
+.hidden{border-left:1px solid var(--a);padding-left:24px;margin-top:35px}.hidden strong{color:#fff}
+.ab{margin-top:40px;border-top:1px solid var(--line)}.phase{display:grid;grid-template-columns:65px 240px 1fr;gap:20px;padding:24px 0;border-bottom:1px solid var(--line2)}.phase .letter{font:700 11px ui-monospace,monospace;color:var(--a)}.phase .name{font-size:24px;letter-spacing:-.025em}.phase p{margin:0;color:var(--muted);font-size:14px}
+.guardrails{margin-top:38px;border-top:1px solid var(--line)}.g{display:grid;grid-template-columns:1.1fr .85fr 2fr;border-bottom:1px solid var(--line2);font-size:12px}.g>div{padding:14px 14px 14px 0}.g>div+div{border-left:1px solid var(--line2);padding-left:14px}.g .name{color:#fff;font-weight:650}.g .stage-name{color:var(--a)}
+.final{padding:130px 0 150px}.final h2{max-width:960px}.final .gradient{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.footer{padding:35px 0 70px;color:var(--faint);font-size:11px;display:flex;justify-content:space-between}
+.toast{position:fixed;right:20px;bottom:20px;background:#111516;border:1px solid var(--line);padding:13px 16px;font:11px ui-monospace,monospace;color:#dfe5e3;opacity:0;transform:translateY(8px);pointer-events:none;transition:.3s;z-index:100}.toast.show{opacity:1;transform:none}
+@media(max-width:850px){
+ .nav{display:none}.section-grid{grid-template-columns:1fr;gap:28px}.hero{min-height:80vh}.hero h1{font-size:clamp(60px,18vw,110px)}
+ .stages{grid-template-columns:repeat(3,1fr)}.stage:nth-child(n+4){display:none}.output{grid-template-columns:1fr;gap:8px}.compare{grid-template-columns:1fr}.col+.col{border-left:0;border-top:1px solid var(--line2)}
+ .room-head,.seat{grid-template-columns:70px 1fr}.room-head div:nth-child(3),.seat .seat-state{display:none}.phase{grid-template-columns:50px 1fr}.phase p{grid-column:2}.footer{display:block}.footer div+div{margin-top:8px}.demo-head{display:block}.hero-bottom{flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav>
+  <a class="logo" href="#top">CONCL<span class="ai">AI</span>VE™</a>
+  <div class="nav"><a href="#experience">Experience</a><a href="#conclave">The Conclave</a><a href="#framework">A–E</a><a href="#governance">Governance</a></div>
+</nav></div></header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker">An intelligence environment</div>
+    <h1>Stay with<br>the <span class="gradient">question.</span></h1>
+    <p>Most AI is designed to answer. CONCLAIVE is designed to deliberate — assembling the right intelligence, introducing disagreement, testing the reasoning, and returning the decision to the human.</p>
+    <div class="hero-bottom"><a class="btn" href="#experience">Convene</a><a class="btn ghost" href="#conclave">Enter the concept</a></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap section-grid">
+    <div><div class="section-no">01</div><div class="label">The proposition</div></div>
+    <div>
+      <div class="manifesto">A difficult question shouldn't be rushed to an answer.<br><span class="gradient">It should be given enough intelligence to become a decision.</span></div>
+      <p class="copy" style="margin-top:30px">CONCLAIVE turns a difficult question into a controlled deliberation. The system decides what perspectives are relevant, changes the incentive at each stage, preserves the reasoning and keeps human authority outside the machinery.</p>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="demo">
+  <div class="wrap">
+    <div class="section-no">02</div>
+    <div class="demo-head"><div><h2>Convene<br>the question.</h2></div><div class="demo-note">You do not choose agents, write orchestration prompts or manage a chain. You bring the question. CONCLAIVE assembles the environment around it.</div></div>
+    <div class="prompt-shell">
+      <div class="prompt-top"><div class="prompt-title">THE CONCLAVE / OPEN</div><div class="label">Question</div></div>
+      <textarea id="q" placeholder="What question are we here to resolve?"></textarea>
+      <div class="demo-actions"><div id="status" class="demo-status">READY</div><button id="run" class="btn">Convene</button></div>
+    </div>
+    <div class="progress"><span id="bar"></span></div>
+    <div class="stages">
+      <div class="stage on">A / Assemble</div><div class="stage">B / Broaden</div><div class="stage">C / Challenge</div><div class="stage">D / Deliberate</div><div class="stage">E / Emerge</div><div class="stage">Human / Decide</div>
+    </div>
+    <div class="output">
+      <div class="output-index" id="oi">STATE / 00</div>
+      <div><div class="output-title" id="ot">The question enters the Conclave.</div><div class="output-text" id="ox">CONCLAIVE determines what kind of thinking the problem requires. The environment forms around the question — not around a fixed list of AI personas.</div><div class="output-meta" id="om">READY FOR INPUT</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="conclave">
+  <div class="wrap section-grid">
+    <div><div class="section-no">03</div><div class="label">The concept</div></div>
+    <div>
+      <h2>The question<br>gets a table.</h2>
+      <p class="lead">A Conclave is a deliberate environment: a question comes in, relevant intelligence is assembled, competing positions are allowed to form, and the work continues until a defensible position emerges.</p>
+      <div class="room">
+        <div class="room-head"><div>Seat</div><div>Perspective</div><div>State</div></div>
+        <div class="seat"><div class="seat-id">01 / CORE</div><div><div class="seat-name">Strategy</div><div class="seat-role">What creates durable value?</div></div><div class="seat-state">ASSEMBLED</div></div>
+        <div class="seat"><div class="seat-id">02 / CORE</div><div><div class="seat-name">Finance</div><div class="seat-role">What must be true economically?</div></div><div class="seat-state">ASSEMBLED</div></div>
+        <div class="seat"><div class="seat-id">03 / DYNAMIC</div><div><div class="seat-name">Risk</div><div class="seat-role">What can break, and how badly?</div></div><div class="seat-state">ASSEMBLED</div></div>
+        <div class="seat"><div class="seat-id">04 / DYNAMIC</div><div><div class="seat-name">Technology</div><div class="seat-role">What is actually feasible?</div></div><div class="seat-state">ASSEMBLED</div></div>
+        <div class="seat"><div class="seat-id">05 / CONTRARY</div><div><div class="seat-name">Contrarian</div><div class="seat-role">What would make the proposition wrong?</div></div><div class="seat-state">ASSEMBLED</div></div>
+      </div>
+      <div class="callout"><div class="label">The principle</div><div class="quote">The room does not know what answer you want.</div><p class="copy" style="margin-bottom:0">The panel can receive a neutralised question so your preferred outcome does not become the easiest response to satisfy.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="difference">
+  <div class="wrap section-grid">
+    <div><div class="section-no">04</div><div class="label">The difference</div></div>
+    <div>
+      <h2>Not better prompting.<br>A different process.</h2>
+      <p class="lead">The strongest objection is the simplest: “Isn't this just good prompting?”</p>
+      <div class="compare">
+        <div class="col"><h3>Ordinary prompting</h3><div class="sub">One interaction</div>
+          <div class="row"><b>You define the approach</b>You decide which perspectives to request.</div>
+          <div class="row"><b>You sequence the work</b>You decide what happens next.</div>
+          <div class="row"><b>The model follows your framing</b>The conversation can expose what you appear to want.</div>
+          <div class="row"><b>You decide when to stop</b>A persuasive first answer can become the final answer.</div>
+        </div>
+        <div class="col"><h3>CONCL<span class="ai">AI</span>VE™</h3><div class="sub">An orchestrated deliberation</div>
+          <div class="row"><b>The system assembles the room</b>Relevant disciplines are selected for the nature of the problem.</div>
+          <div class="row"><b>The process changes the process</b>Each stage receives and interrogates what came before.</div>
+          <div class="row"><b>Intent can be separated</b>The panel can receive a neutralised question without the desired outcome attached.</div>
+          <div class="row"><b>The position must survive</b>Challenge, audit and dialectic disagreement precede emergence.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="framework">
+  <div class="wrap section-grid">
+    <div><div class="section-no">05</div><div class="label">The A–E protocol</div></div>
+    <div>
+      <h2>Five movements.<br>One deliberation.</h2>
+      <p class="copy">A–E is the visible rhythm of the CONCLAIVE method. The user does not operate these stages manually; the system orchestrates them according to the question.</p>
+      <div class="ab">
+        <div class="phase"><div class="letter">A</div><div class="name">Assemble</div><p>Determine what the question requires. Bring the right disciplines, evidence and perspectives to the table.</p></div>
+        <div class="phase"><div class="letter">B</div><div class="name">Broaden</div><p>Expand the proposition beyond its initial assumptions. Surface constraints, possibilities and stakeholder realities.</p></div>
+        <div class="phase"><div class="letter">C</div><div class="name">Challenge</div><p>Attack the proposition. Seek contradictions, unsupported assumptions, failure modes and reasons it might be wrong.</p></div>
+        <div class="phase"><div class="letter">D</div><div class="name">Deliberate</div><p>Allow competing positions to interact. Independent voices can disagree, reconcile and test one another.</p></div>
+        <div class="phase"><div class="letter">E</div><div class="name">Emerge</div><p>Produce a defensible position — with uncertainty, unresolved questions and the human decision gate clearly preserved.</p></div>
+      </div>
+      <div class="callout"><div class="label">Exceptional mode</div><div class="quote">REDLINE / When the question cannot wait.</div><p class="copy" style="margin-bottom:0">A higher-scrutiny operating mode for urgent cases: tighter escalation, compressed deliberation and immediate human intervention where required.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap section-grid">
+    <div><div class="section-no">06</div><div class="label">The hidden machinery</div></div>
+    <div>
+      <h2>You never see<br>the machinery.</h2>
+      <p class="lead">The prompts, model routing, orchestration and internal choreography stay behind the interface.</p>
+      <div class="hidden"><p class="copy" style="margin:0"><strong>The user sees the transformation.</strong> The same question returns with a different state: assembled, broadened, challenged, deliberated and emerged.</p><p class="copy" style="margin:14px 0 0">The complexity belongs in the system. The interface remains calm.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="governance">
+  <div class="wrap section-grid">
+    <div><div class="section-no">07</div><div class="label">Governance</div></div>
+    <div>
+      <h2>Governance lives<br>inside the process.</h2>
+      <p class="lead">Governance is not a final compliance screen. It is expressed through the way a question is assembled, tested, challenged, recorded and returned to human authority.</p>
+      <div class="guardrails">
+        <div class="g"><div class="label">Guardrail</div><div class="label">Primary stage</div><div class="label">Product expression</div></div>
+        <div class="g"><div class="name">Accountability</div><div class="stage-name">Command</div><div>Named decision authority, ownership and explicit human clearance.</div></div>
+        <div class="g"><div class="name">Risk management</div><div class="stage-name">Challenge → Emerge</div><div>Material risks are surfaced early and deliberately attacked later.</div></div>
+        <div class="g"><div class="name">Data governance</div><div class="stage-name">Assemble / Record</div><div>Controlled inputs, provenance and evidence state form part of the case.</div></div>
+        <div class="g"><div class="name">Testing AI models and systems</div><div class="stage-name">Challenge</div><div>Outputs are stress-tested rather than accepted at first pass.</div></div>
+        <div class="g"><div class="name">Human control or intervention</div><div class="stage-name">Throughout</div><div>The system advises; the human retains decision authority.</div></div>
+        <div class="g"><div class="name">Transparency</div><div class="stage-name">Record / Emerge</div><div>Assumptions, evidence state and decision history can be preserved.</div></div>
+        <div class="g"><div class="name">Contestability</div><div class="stage-name">Deliberate</div><div>Disagreement is a designed function, not an error state.</div></div>
+        <div class="g"><div class="name">Supply-chain transparency</div><div class="stage-name">Assemble</div><div>External assets and sources can carry provenance into the case.</div></div>
+        <div class="g"><div class="name">Record keeping</div><div class="stage-name">Emerge / Record</div><div>Chronology, changes, unresolved issues and authorisations can be retained.</div></div>
+        <div class="g"><div class="name">Stakeholder engagement</div><div class="stage-name">Broaden / Deliberate</div><div>Relevant stakeholder perspectives can broaden the room before resolution.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap section-grid">
+    <div><div class="section-no">08</div><div class="label">Dynamic intelligence</div></div>
+    <div>
+      <h2>The room changes<br>with the question.</h2>
+      <p class="lead">You never select “Legal Agent”, “CFO Agent” or “UX Agent”. CONCLAIVE infers which disciplines matter and assembles the appropriate seats behind the scenes.</p>
+      <p class="copy" style="margin-top:28px"><strong style="color:#fff">Persistent anchors.</strong> A small leadership layer can remain present across cases for product, systems and AI-native thinking. <strong style="color:#fff">Specialists on demand.</strong> Legal, finance, science, engineering, operations, UX, communications and other expert perspectives can be introduced only when the question requires them.</p>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <div class="section-no">09</div>
+    <div class="label">The proposition</div>
+    <h2>Don't rush the answer.<br><span class="gradient">Stay with the question.</span></h2>
+    <p class="lead">The prompts disappear. The room disappears. What remains is a more deliberately formed position — and the human decision that follows.</p>
+    <div class="hero-bottom"><a class="btn" href="#experience">Convene a question</a></div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap footer"><div>CONCL<span class="ai">AI</span>VE™ / Product concept</div><div>A–E Protocol / Intelligence environment</div></div></footer>
+<div id="toast" class="toast"></div>
+
+<script>
+const outputs=[
+ {t:'The question enters the Conclave.',x:'CONCLAIVE determines what kind of thinking the problem requires. The environment forms around the question — not around a fixed list of AI personas.',m:'A / ASSEMBLE — CONTEXT ESTABLISHED'},
+ {t:'The proposition broadens.',x:'Relevant disciplines, constraints and stakeholder realities are brought into the case. The original framing is no longer the only framing in the room.',m:'B / BROADEN — POSITION EXPANDED'},
+ {t:'The proposition is attacked.',x:'The system changes its incentive. Earlier reasoning becomes the object of scrutiny: assumptions, gaps, contradictions and failure modes are actively sought.',m:'C / CHALLENGE — ADVERSARIAL REVIEW'},
+ {t:'The room is allowed to disagree.',x:'Independent perspectives interact. The panel can receive neutralised questions so the Director’s preferred outcome does not become the easiest answer to satisfy.',m:'D / DELIBERATE — DIALECTIC REVIEW'},
+ {t:'A position emerges.',x:'The surviving reasoning is synthesised into a position record: what is supported, what remains uncertain, what should happen next, and where human authority is required.',m:'E / EMERGE — POSITION FORMED'},
+ {t:'The decision returns to the human.',x:'CONCLAIVE does not take the decision. It returns the case with its reasoning, disagreements, uncertainty and proposed next action visible to the person who owns the consequence.',m:'HUMAN — DECISION GATE'}
+];
+const run=document.getElementById('run'),q=document.getElementById('q'),bar=document.getElementById('bar'),st=document.getElementById('status'),oi=document.getElementById('oi'),ot=document.getElementById('ot'),ox=document.getElementById('ox'),om=document.getElementById('om'),stageEls=[...document.querySelectorAll('.stage')];
+let timer;
+run.addEventListener('click',()=>{
+ if(!q.value.trim()){q.focus();show('Enter a question first.');return}
+ clearInterval(timer);let i=0;run.disabled=true;st.textContent='CONCLAVE IN SESSION';
+ const tick=()=>{
+  const d=outputs[i];
+  oi.textContent='STATE / '+String(i+1).padStart(2,'0');ot.textContent=d.t;ox.textContent=d.x;om.textContent=d.m;
+  bar.style.width=((i+1)/outputs.length*100)+'%';
+  stageEls.forEach((s,n)=>s.classList.toggle('on',n===i));
+  i++;
+  if(i>=outputs.length){clearInterval(timer);run.disabled=false;st.textContent='COMPLETE';show('The position has emerged. The decision remains human.')}
+ };
+ tick();timer=setInterval(tick,1250);
+});
+function show(s){const t=document.getElementById('toast');t.textContent=s;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
+</script>
+</body>
+</html>
