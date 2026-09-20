@@ -42,11 +42,32 @@ export const AssemblySchema = z.object({
 
 export const SeatPerspectiveSchema = z.preprocess((data) => {
   if (data && typeof data === 'object') {
-    if (!data.seatName) data.seatName = data.name || data.seat || data.discipline || 'Disciplinary Perspective';
-    if (!data.position) data.position = data.reframe || data.perspective || 'Disciplinary reframe';
-    if (!data.reframe) data.reframe = data.position || 'Broadened reframe';
+    const seatName = data.seatName || data.name || data.seat || data.discipline || data.title || 'Disciplinary Perspective';
+    const pos = data.position || data.reframe || data.perspective || data.viewpoint || data.thesis || 'Disciplinary perspective on proposition';
+    const ref = data.reframe || data.position || data.perspective || pos;
+    return {
+      seatId: String(data.seatId || data.id || 'seat-01'),
+      seatName: String(seatName),
+      position: String(pos),
+      reframe: String(ref),
+      importantEvidence: String(data.importantEvidence || data.evidence || data.keyEvidence || 'Empirical validation required'),
+      newConsideration: String(data.newConsideration || data.consideration || data.friction || 'Unexamined systemic friction'),
+      assumptionChallenged: String(data.assumptionChallenged || data.assumption || 'Baseline premise'),
+      questionForAnotherSeat: String(data.questionForAnotherSeat || data.question || 'How does this perspective reconcile with practical constraints?'),
+      uncertainty: String(data.uncertainty || data.materialUncertainty || 'Empirical uncertainty')
+    };
   }
-  return data;
+  return {
+    seatId: 'seat-01',
+    seatName: 'Disciplinary Perspective',
+    position: 'Disciplinary perspective on proposition',
+    reframe: 'Broadened proposition',
+    importantEvidence: 'Empirical validation required',
+    newConsideration: 'Unexamined systemic friction',
+    assumptionChallenged: 'Baseline premise',
+    questionForAnotherSeat: 'How does this perspective reconcile with practical constraints?',
+    uncertainty: 'Empirical uncertainty'
+  };
 }, z.object({
   seatId: z.string().default('seat-01'),
   seatName: z.string().default('Disciplinary Perspective'),
@@ -61,10 +82,15 @@ export const SeatPerspectiveSchema = z.preprocess((data) => {
 
 export const BroadenSchema = z.preprocess((data) => {
   if (data && typeof data === 'object') {
-    if (!data.questionReframing) data.questionReframing = data.reframing || data.broadenedQuestion || 'How the proposition expands beyond its initial boundaries.';
-    if (!data.perspectives && Array.isArray(data.seats)) data.perspectives = data.seats;
+    const questionReframing = data.questionReframing || data.reframing || data.broadenedQuestion || data.reframe || 'How the proposition expands beyond its initial boundaries.';
+    const rawList = data.perspectives || data.seats || data.perspectivesList || [];
+    const perspectives = Array.isArray(rawList) ? rawList : [];
+    return {
+      questionReframing,
+      perspectives
+    };
   }
-  return data;
+  return { questionReframing: 'How the proposition is broadened beyond its initial premises.', perspectives: [] };
 }, z.object({
   questionReframing: z.string().default('How the proposition is broadened beyond its initial premises.'),
   perspectives: z.array(SeatPerspectiveSchema).default([])
@@ -72,10 +98,31 @@ export const BroadenSchema = z.preprocess((data) => {
 
 export const SeatChallengeSchema = z.preprocess((data) => {
   if (data && typeof data === 'object') {
-    if (!data.seatName) data.seatName = data.name || data.seat || data.discipline || 'Adversarial Seat';
-    if (!data.failureMode) data.failureMode = data.challenge || data.attack || data.criticism || 'Critical point of failure';
+    const seatName = data.seatName || data.name || data.seat || data.discipline || data.title || 'Adversarial Seat';
+    const failureMode = data.failureMode || data.challenge || data.attack || data.criticism || data.vulnerability || 'Critical point of failure under pressure';
+    return {
+      seatId: String(data.seatId || data.id || 'seat-01'),
+      seatName: String(seatName),
+      targetSeatOrAssumption: String(data.targetSeatOrAssumption || data.target || data.assumptionTested || 'Core proposition'),
+      failureMode: String(failureMode),
+      assumptionTested: String(data.assumptionTested || data.assumption || 'Baseline premise'),
+      missingEvidence: String(data.missingEvidence || data.evidenceMissing || 'Absence of empirical confirmation'),
+      contradictionFound: String(data.contradictionFound || data.contradiction || 'Inherent tension between objectives'),
+      changedByEvidence: String(data.changedByEvidence || data.counterEvidence || 'Controlled empirical validation data'),
+      underweightedRisk: String(data.underweightedRisk || data.risk || 'Systemic friction')
+    };
   }
-  return data;
+  return {
+    seatId: 'seat-01',
+    seatName: 'Adversarial Seat',
+    targetSeatOrAssumption: 'Core proposition',
+    failureMode: 'Critical failure mode under pressure',
+    assumptionTested: 'Baseline premise',
+    missingEvidence: 'Absence of empirical confirmation',
+    contradictionFound: 'Inherent tension between objectives',
+    changedByEvidence: 'Controlled empirical validation data',
+    underweightedRisk: 'Systemic friction'
+  };
 }, z.object({
   seatId: z.string().default('seat-01'),
   seatName: z.string().default('Adversarial Seat'),
@@ -90,11 +137,24 @@ export const SeatChallengeSchema = z.preprocess((data) => {
 
 export const ChallengeSchema = z.preprocess((data) => {
   if (data && typeof data === 'object') {
-    if (!data.focalContradiction) data.focalContradiction = data.contradiction || data.tension || 'Irreducible tension between primary objectives.';
-    if (!data.assumptionDoingMostWork) data.assumptionDoingMostWork = data.mostVulnerableAssumption || data.assumption || 'Baseline premise carrying the highest consequence.';
-    if (!data.challenges && Array.isArray(data.seats)) data.challenges = data.seats;
+    const focalContradiction = data.focalContradiction || data.contradiction || data.tension || data.coreTension || 'Irreducible tension between primary objectives.';
+    const assumptionDoingMostWork = data.assumptionDoingMostWork || data.mostVulnerableAssumption || data.assumption || 'Baseline premise carrying highest consequence.';
+    const transformingQuestion = data.transformingQuestion || 'The question under adversarial scrutiny.';
+    const rawList = data.challenges || data.seats || data.attacks || [];
+    const challenges = Array.isArray(rawList) ? rawList : [];
+    return {
+      focalContradiction,
+      assumptionDoingMostWork,
+      transformingQuestion,
+      challenges
+    };
   }
-  return data;
+  return {
+    focalContradiction: 'Tension between core assumptions.',
+    assumptionDoingMostWork: 'The premise that carries greatest consequence if false.',
+    transformingQuestion: 'The question under adversarial scrutiny.',
+    challenges: []
+  };
 }, z.object({
   focalContradiction: z.string().default('Tension between core assumptions.'),
   assumptionDoingMostWork: z.string().default('The premise that carries the greatest risk if false.'),
@@ -166,14 +226,23 @@ export const Phase1Schema = z.preprocess((data) => {
 
 export const Phase2Schema = z.preprocess((data) => {
   if (data && typeof data === 'object') {
-    if (!data.broaden && (data.perspectives || data.questionReframing)) {
-      data = {
-        broaden: { questionReframing: data.questionReframing, perspectives: data.perspectives || [] },
-        challenge: data.challenge || { focalContradiction: data.focalContradiction, challenges: data.challenges || [] }
-      };
-    }
+    // If model returned a flattened object or top-level properties
+    const broadenData = data.broaden || {
+      questionReframing: data.questionReframing || data.broadenedQuestion || data.reframe,
+      perspectives: data.perspectives || data.seats || []
+    };
+    const challengeData = data.challenge || {
+      focalContradiction: data.focalContradiction || data.contradiction || data.tension,
+      assumptionDoingMostWork: data.assumptionDoingMostWork || data.assumption,
+      transformingQuestion: data.transformingQuestion,
+      challenges: data.challenges || (data.challenge && data.challenge.challenges) || []
+    };
+    return {
+      broaden: broadenData,
+      challenge: challengeData
+    };
   }
-  return data;
+  return { broaden: {}, challenge: {} };
 }, z.object({
   broaden: BroadenSchema,
   challenge: ChallengeSchema
@@ -181,36 +250,36 @@ export const Phase2Schema = z.preprocess((data) => {
 
 export const Phase3Schema = z.preprocess((data) => {
   if (data && typeof data === 'object') {
-    if (!data.deliberation && (data.summary || data.frictionSummary || data.areasOfAgreement)) {
-      data = {
-        deliberation: {
-          summary: data.summary,
-          frictionSummary: data.frictionSummary,
-          transformingQuestion: data.transformingQuestion,
-          areasOfAgreement: data.areasOfAgreement || [],
-          areasOfDisagreement: data.areasOfDisagreement || [],
-          strongestArgumentFor: data.strongestArgumentFor,
-          strongestArgumentAgainst: data.strongestArgumentAgainst,
-          materialUnknowns: data.materialUnknowns || [],
-          unsupportedAssumptions: data.unsupportedAssumptions || [],
-          unresolvedConflicts: data.unresolvedConflicts || [],
-          questionsRequiringHumanJudgement: data.questionsRequiringHumanJudgement || []
-        },
-        emergence: data.emergence || {
-          position: data.position,
-          basis: data.basis,
-          strongestSupport: data.strongestSupport,
-          strongestObjection: data.strongestObjection,
-          materialUncertainty: data.materialUncertainty,
-          unresolvedQuestions: data.unresolvedQuestions || [],
-          conditions: data.conditions || [],
-          recommendedNextAction: data.recommendedNextAction,
-          selfCritiqueAnalysis: data.selfCritiqueAnalysis
-        }
-      };
-    }
+    const deliberationData = data.deliberation || {
+      summary: data.summary || data.frictionSummary,
+      frictionSummary: data.frictionSummary || data.summary,
+      transformingQuestion: data.transformingQuestion,
+      areasOfAgreement: data.areasOfAgreement || [],
+      areasOfDisagreement: data.areasOfDisagreement || [],
+      strongestArgumentFor: data.strongestArgumentFor,
+      strongestArgumentAgainst: data.strongestArgumentAgainst,
+      materialUnknowns: data.materialUnknowns || [],
+      unsupportedAssumptions: data.unsupportedAssumptions || [],
+      unresolvedConflicts: data.unresolvedConflicts || [],
+      questionsRequiringHumanJudgement: data.questionsRequiringHumanJudgement || []
+    };
+    const emergenceData = data.emergence || {
+      position: data.position,
+      basis: data.basis,
+      strongestSupport: data.strongestSupport,
+      strongestObjection: data.strongestObjection,
+      materialUncertainty: data.materialUncertainty,
+      unresolvedQuestions: data.unresolvedQuestions || [],
+      conditions: data.conditions || [],
+      recommendedNextAction: data.recommendedNextAction,
+      selfCritiqueAnalysis: data.selfCritiqueAnalysis
+    };
+    return {
+      deliberation: deliberationData,
+      emergence: emergenceData
+    };
   }
-  return data;
+  return { deliberation: {}, emergence: {} };
 }, z.object({
   deliberation: DeliberationSchema,
   emergence: EmergenceSchema
