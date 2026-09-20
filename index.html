@@ -4,88 +4,302 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>CONCLAIVE™ — Stay with the question.</title>
-<meta name="description" content="CONCLAIVE is an intelligence environment for difficult decisions. Stay with the question.">
+<meta name="description" content="CONCLAIVE is an intelligence environment for difficult questions. Stay with the question.">
+<link rel="stylesheet" href="https://use.typekit.net/hoe3ija.css">
 <style>
 :root{
-  --bg:#07090a;--bg2:#0a0d0e;--ink:#f4f5f3;--muted:#9ba3a4;--faint:#596163;
+  --bg:#07090a;--bg2:#0a0d0e;--bg3:#0e1315;--ink:#f4f5f3;--muted:#9ba3a4;--faint:#596163;
   --line:rgba(255,255,255,.11);--line2:rgba(255,255,255,.055);
-  --a:#8be0d8;--b:#9fc9dc;--c:#bfdcf0;--max:1180px;
+  --a:#8be0d8;--b:#9fc9dc;--c:#bfdcf0;--max:1280px;
+  --red:#f46a6a;--red-bg:rgba(244,106,106,.08);--red-line:rgba(244,106,106,.3);
   --grad:linear-gradient(90deg,var(--a) 0%,var(--b) 52%,var(--c) 100%);
+  --mono:"apotek-cond","apotek","museo-sans-condensed","museo-sans",ui-monospace,monospace;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
 button,input,textarea{font:inherit}button{color:inherit}a{text-decoration:none;color:inherit}
 .wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
-header{height:68px;position:sticky;top:0;z-index:50;background:rgba(7,9,10,.76);backdrop-filter:blur(18px);border-bottom:1px solid var(--line2)}
+
+/* Top Header */
+header{height:68px;position:sticky;top:0;z-index:90;background:rgba(7,9,10,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--line2)}
 nav{height:100%;display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:15px;font-weight:800;letter-spacing:.15em}.logo .ai{font-weight:950;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.nav{display:flex;gap:25px;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.13em}.nav a:hover{color:#fff}
-.hero{min-height:calc(100vh - 68px);display:grid;align-items:center;border-bottom:1px solid var(--line2);position:relative;overflow:hidden}
+.logo{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:800;letter-spacing:.15em;cursor:pointer}
+.logo .ai{font-weight:950;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo-tag{font:600 10px var(--mono);color:var(--a);letter-spacing:.14em;border:1px solid rgba(139,224,216,.25);padding:2px 6px;border-radius:4px}
+.nav{display:flex;gap:24px;color:var(--muted);font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.13em}
+.nav a:hover{color:#fff}
+.nav-case-meta{display:none;align-items:center;gap:14px;font:600 11px var(--mono);letter-spacing:.12em}
+.nav-case-meta.active{display:flex}
+.badge-mode{font:600 10px var(--mono);padding:3px 8px;border-radius:999px;border:1px solid var(--line);letter-spacing:.12em}
+.badge-mode.redline{border-color:var(--red-line);color:var(--red);background:var(--red-bg)}
+
+/* Hero & Logo with Glow */
+.hero{min-height:calc(100vh - 68px);display:grid;align-items:center;border-bottom:1px solid var(--line2);position:relative;overflow:hidden;padding:80px 0}
 .hero:before{content:"";position:absolute;width:850px;height:850px;left:-460px;bottom:-540px;border-radius:50%;background:radial-gradient(circle,rgba(159,201,220,.08),transparent 68%);pointer-events:none}
 .hero:after{content:"";position:absolute;width:760px;height:760px;right:-260px;top:-280px;border-radius:50%;background:radial-gradient(circle,rgba(139,224,216,.11),transparent 67%);pointer-events:none}
-.kicker{font:600 10px/1.2 ui-monospace,monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--a);margin-bottom:25px}
-.hero h1{font-size:clamp(66px,11.8vw,150px);line-height:.84;letter-spacing:-.07em;margin:0 0 30px;font-weight:760;max-width:960px}
+.hero-logo-wrap{position:relative;display:inline-block;margin-bottom:28px}
+.hero-logo-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:360px;height:140px;background:radial-gradient(ellipse at center,rgba(139,224,216,.25) 0%,rgba(159,201,220,.08) 50%,transparent 74%);filter:blur(32px);pointer-events:none;z-index:0}
+.hero-logo-img{position:relative;z-index:1;height:42px;max-width:100%;object-fit:contain;display:block;filter:drop-shadow(0 0 18px rgba(139,224,216,.28))}
+
+.kicker{font:600 11px var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--a);margin-bottom:18px}
+.hero h1{font-size:clamp(56px,10.5vw,138px);line-height:.86;letter-spacing:-.065em;margin:0 0 28px;font-weight:760;max-width:980px}
 .hero h1 .gradient{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:950}
-.hero p{font-size:clamp(21px,2.35vw,30px);line-height:1.15;letter-spacing:-.025em;color:#d9dedd;max-width:760px;margin:0}
-.hero-bottom{display:flex;gap:18px;align-items:center;margin-top:42px}
-.btn{border:1px solid rgba(139,224,216,.45);background:rgba(139,224,216,.055);padding:13px 17px;border-radius:999px;cursor:pointer;font-size:11px;letter-spacing:.1em;text-transform:uppercase}.btn:hover{background:rgba(139,224,216,.11)}
-.btn:disabled{opacity:.45;cursor:wait}.ghost{border-color:var(--line);background:transparent;color:var(--muted)}
-section{padding:105px 0;border-bottom:1px solid var(--line2);position:relative}
-.section-no{font:600 10px ui-monospace,monospace;color:var(--a);letter-spacing:.15em;margin-bottom:18px}.section-grid{display:grid;grid-template-columns:240px 1fr;gap:70px}
-.label{font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:var(--faint)}
-h2{font-size:clamp(43px,6vw,76px);line-height:.92;letter-spacing:-.055em;margin:0 0 26px;font-weight:730}h3{font-size:22px;letter-spacing:-.025em;margin:0 0 8px}
-.lead{font-size:22px;line-height:1.28;color:#d0d5d4;max-width:850px}.copy{font-size:15px;color:var(--muted);max-width:850px}
-.manifesto{font-size:clamp(31px,5vw,60px);line-height:1;letter-spacing:-.05em;max-width:1000px}.manifesto .gradient{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:clamp(19px,2.2vw,28px);line-height:1.2;letter-spacing:-.025em;color:#d9dedd;max-width:780px;margin:0}
+.hero-bottom{display:flex;gap:14px;align-items:center;margin-top:36px;flex-wrap:wrap}
+
+/* Common Buttons */
+.btn{border:1px solid rgba(139,224,216,.45);background:rgba(139,224,216,.055);color:#fff;padding:12px 18px;border-radius:999px;cursor:pointer;font:600 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{background:rgba(139,224,216,.14);border-color:var(--a)}
+.btn:disabled{opacity:.4;cursor:wait;pointer-events:none}
+.btn.ghost{border-color:var(--line);background:transparent;color:var(--muted)}
+.btn.ghost:hover{background:rgba(255,255,255,.05);color:#fff}
+.btn.demo-btn{border-color:rgba(191,220,240,.35);background:rgba(191,220,240,.04);color:var(--c)}
+.btn.demo-btn:hover{background:rgba(191,220,240,.12);border-color:var(--c);color:#fff}
+.btn.redline-btn{border-color:var(--red-line);background:var(--red-bg);color:var(--red)}
+.btn.redline-btn:hover{background:rgba(244,106,106,.15);border-color:var(--red)}
+.btn.sm{padding:8px 12px;font-size:10px}
+
+/* Convene Shell Section */
+section{padding:90px 0;border-bottom:1px solid var(--line2);position:relative}
+.section-no{font:600 10px var(--mono);color:var(--a);letter-spacing:.16em;margin-bottom:16px}
+.section-grid{display:grid;grid-template-columns:220px 1fr;gap:60px}
+.label{font:600 10px var(--mono);text-transform:uppercase;letter-spacing:.18em;color:var(--faint)}
+h2{font-size:clamp(38px,5.2vw,70px);line-height:.94;letter-spacing:-.05em;margin:0 0 24px;font-weight:730}
+.lead{font-size:21px;line-height:1.3;color:#d0d5d4;max-width:850px}
+.copy{font-size:15px;color:var(--muted);max-width:850px}
+.manifesto{font-size:clamp(28px,4.5vw,56px);line-height:1.02;letter-spacing:-.045em;max-width:1000px}
+.manifesto .gradient{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* Experience Convene Box */
 .demo{background:linear-gradient(180deg,#080b0b,#07090a)}
-.demo-head{display:flex;justify-content:space-between;align-items:end;gap:30px}.demo-note{max-width:440px;color:var(--muted);font-size:13px}
-.prompt-shell{margin-top:40px;border:1px solid var(--line);background:rgba(255,255,255,.012)}
-.prompt-top{padding:12px 18px;border-bottom:1px solid var(--line2);display:flex;justify-content:space-between;align-items:center}.prompt-title{font:600 10px ui-monospace,monospace;letter-spacing:.14em;color:var(--a)}
-textarea{width:100%;min-height:165px;resize:vertical;background:transparent;border:0;outline:0;color:#fff;padding:28px 22px;font-size:24px;line-height:1.25;letter-spacing:-.025em}textarea::placeholder{color:#5d6667}
-.demo-actions{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line2);padding:14px 18px}.demo-status{font:600 10px ui-monospace,monospace;letter-spacing:.12em;color:var(--faint)}
-.progress{height:2px;background:rgba(255,255,255,.05);margin-top:30px}.progress span{display:block;height:100%;width:0;background:var(--grad);transition:width .55s ease}
-.stages{display:grid;grid-template-columns:repeat(6,1fr);margin-top:15px}.stage{padding:13px 0;border-top:1px solid transparent;color:var(--faint);font-size:10px;letter-spacing:.12em;text-transform:uppercase}.stage.on{color:var(--a);border-top-color:var(--a)}
-.output{margin-top:45px;min-height:260px;display:grid;grid-template-columns:170px 1fr;gap:30px}.output-index{font:700 12px ui-monospace,monospace;color:var(--a)}.output-title{font-size:32px;letter-spacing:-.035em;margin-bottom:13px}.output-text{font-size:17px;line-height:1.45;color:#c8cecc;max-width:780px}.output-meta{margin-top:22px;font:11px ui-monospace,monospace;color:var(--faint)}
-.room{margin-top:38px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.room-head{display:grid;grid-template-columns:150px 1fr 160px;gap:20px;padding:14px 0;border-bottom:1px solid var(--line2);font:600 10px ui-monospace,monospace;letter-spacing:.12em;color:var(--faint);text-transform:uppercase}
-.seat{display:grid;grid-template-columns:150px 1fr 160px;gap:20px;padding:22px 0;border-bottom:1px solid var(--line2)}.seat:last-child{border-bottom:0}.seat-id{font:600 10px ui-monospace,monospace;color:var(--a)}.seat-name{font-size:21px;letter-spacing:-.02em}.seat-role{color:var(--muted);font-size:13px}.seat-state{font:10px ui-monospace,monospace;color:var(--faint);letter-spacing:.1em;text-transform:uppercase}
-.callout{border-left:1px solid var(--a);padding-left:24px;margin-top:38px}.callout strong{color:#fff}.callout .quote{font-size:27px;line-height:1.08;letter-spacing:-.035em;max-width:850px;margin-top:6px}
-.compare{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:50px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.col{padding:28px}.col+.col{border-left:1px solid var(--line)}.col h3{font-size:14px;text-transform:uppercase;letter-spacing:.12em}.col .sub{color:var(--faint);font-size:11px;margin-bottom:25px}.row{padding:15px 0;border-top:1px solid var(--line2);font-size:14px;color:var(--muted)}.row b{display:block;color:#f1f3f2;margin-bottom:3px}
-.hidden{border-left:1px solid var(--a);padding-left:24px;margin-top:35px}.hidden strong{color:#fff}
-.ab{margin-top:40px;border-top:1px solid var(--line)}.phase{display:grid;grid-template-columns:65px 240px 1fr;gap:20px;padding:24px 0;border-bottom:1px solid var(--line2)}.phase .letter{font:700 11px ui-monospace,monospace;color:var(--a)}.phase .name{font-size:24px;letter-spacing:-.025em}.phase p{margin:0;color:var(--muted);font-size:14px}
-.guardrails{margin-top:38px;border-top:1px solid var(--line)}.g{display:grid;grid-template-columns:1.1fr .85fr 2fr;border-bottom:1px solid var(--line2);font-size:12px}.g>div{padding:14px 14px 14px 0}.g>div+div{border-left:1px solid var(--line2);padding-left:14px}.g .name{color:#fff;font-weight:650}.g .stage-name{color:var(--a)}
-.final{padding:130px 0 150px}.final h2{max-width:960px}.final .gradient{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.footer{padding:35px 0 70px;color:var(--faint);font-size:11px;display:flex;justify-content:space-between}
-.toast{position:fixed;right:20px;bottom:20px;background:#111516;border:1px solid var(--line);padding:13px 16px;font:11px ui-monospace,monospace;color:#dfe5e3;opacity:0;transform:translateY(8px);pointer-events:none;transition:.3s;z-index:100}.toast.show{opacity:1;transform:none}
-@media(max-width:850px){
- .nav{display:none}.section-grid{grid-template-columns:1fr;gap:28px}.hero{min-height:80vh}.hero h1{font-size:clamp(60px,18vw,110px)}
- .stages{grid-template-columns:repeat(3,1fr)}.stage:nth-child(n+4){display:none}.output{grid-template-columns:1fr;gap:8px}.compare{grid-template-columns:1fr}.col+.col{border-left:0;border-top:1px solid var(--line2)}
- .room-head,.seat{grid-template-columns:70px 1fr}.room-head div:nth-child(3),.seat .seat-state{display:none}.phase{grid-template-columns:50px 1fr}.phase p{grid-column:2}.footer{display:block}.footer div+div{margin-top:8px}.demo-head{display:block}.hero-bottom{flex-wrap:wrap}
+.demo-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+.demo-note{max-width:460px;color:var(--muted);font-size:13px;line-height:1.45}
+.prompt-shell{margin-top:36px;border:1px solid var(--line);background:rgba(255,255,255,.015);border-radius:4px;transition:border-color .2s}
+.prompt-shell:focus-within{border-color:rgba(139,224,216,.4)}
+.prompt-top{padding:12px 18px;border-bottom:1px solid var(--line2);display:flex;justify-content:space-between;align-items:center}
+.prompt-title{font:600 10px var(--mono);letter-spacing:.16em;color:var(--a)}
+textarea{width:100%;min-height:150px;resize:vertical;background:transparent;border:0;outline:0;color:#fff;padding:24px 20px;font-size:23px;line-height:1.3;letter-spacing:-.02em}
+textarea::placeholder{color:#555e60}
+.context-drawer{display:none;padding:16px 20px;border-top:1px dashed var(--line2);background:rgba(0,0,0,.25)}
+.context-drawer.open{display:block}
+.context-drawer textarea{min-height:90px;font-size:15px;padding:8px 0;line-height:1.45}
+.context-drawer textarea::placeholder{color:#495354}
+.prompt-controls{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line2);padding:14px 18px;flex-wrap:wrap;gap:12px}
+.controls-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.controls-right{display:flex;align-items:center;gap:12px}
+.toggle-btn{background:transparent;border:0;color:var(--faint);font:600 11px var(--mono);letter-spacing:.12em;cursor:pointer;padding:6px 0;display:inline-flex;align-items:center;gap:6px}
+.toggle-btn:hover{color:var(--a)}
+.toggle-btn.active{color:var(--a)}
+
+/* CONCLAVE WORKSPACE (Focused Deliberation View) */
+#workspace{display:none;min-height:100vh;background:#060809;border-bottom:1px solid var(--line2)}
+#workspace.active{display:block}
+.workspace-bar{padding:16px 0;border-bottom:1px solid var(--line2);background:rgba(10,13,14,.7);backdrop-filter:blur(14px);position:sticky;top:68px;z-index:40}
+.workspace-bar-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.wb-meta{display:flex;align-items:center;gap:18px;font:600 11px var(--mono);letter-spacing:.14em}
+.wb-case{color:var(--a)}
+.wb-stage{color:var(--muted);text-transform:uppercase}
+.wb-live-pulse{width:7px;height:7px;border-radius:50%;background:var(--a);box-shadow:0 0 8px var(--a);display:inline-block;margin-right:6px}
+.wb-live-pulse.redline{background:var(--red);box-shadow:0 0 8px var(--red)}
+.wb-actions{display:flex;align-items:center;gap:10px}
+
+.workspace-grid{display:grid;grid-template-columns:220px 1fr 340px;min-height:calc(100vh - 130px);border-bottom:1px solid var(--line2)}
+
+/* Left Column: Protocol Nav */
+.workspace-left{border-right:1px solid var(--line2);padding:32px 20px;background:rgba(7,9,10,.5)}
+.ws-nav-title{font:600 10px var(--mono);letter-spacing:.18em;color:var(--faint);text-transform:uppercase;margin-bottom:20px}
+.ws-nav-list{display:flex;flex-direction:column;gap:4px}
+.ws-nav-item{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:4px;cursor:pointer;transition:all .15s;font:600 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--faint);border-left:2px solid transparent}
+.ws-nav-item:hover{background:rgba(255,255,255,.02);color:var(--muted)}
+.ws-nav-item.active{color:var(--a);background:rgba(139,224,216,.04);border-left-color:var(--a)}
+.ws-nav-item.complete{color:#d5dbd9}
+.ws-nav-item.complete .step-state{color:var(--a)}
+.step-state{font-size:9px;letter-spacing:.14em}
+
+/* Center Column: Stage Table & Transformation */
+.workspace-center{padding:36px 44px;overflow-y:auto}
+.transform-banner{border-left:2px solid var(--a);padding:14px 20px;margin-bottom:34px;background:rgba(139,224,216,.02)}
+.transform-banner.redline{border-left-color:var(--red);background:var(--red-bg)}
+.tb-kicker{font:600 10px var(--mono);letter-spacing:.16em;color:var(--a);text-transform:uppercase;margin-bottom:6px}
+.transform-banner.redline .tb-kicker{color:var(--red)}
+.tb-q{font-size:clamp(18px,1.9vw,25px);line-height:1.25;letter-spacing:-.025em;color:#f0f4f3;font-weight:650;margin:0}
+
+/* Stage Container */
+.stage-view{display:none}
+.stage-view.active{display:block}
+
+/* Serious Room / Table View */
+.table-shell{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:24px}
+.table-head{display:grid;grid-template-columns:140px 1fr 130px;gap:20px;padding:12px 0;border-bottom:1px solid var(--line2);font:600 10px var(--mono);letter-spacing:.14em;color:var(--faint);text-transform:uppercase}
+.seat-row{display:grid;grid-template-columns:140px 1fr 130px;gap:20px;padding:22px 0;border-bottom:1px solid var(--line2);transition:background .2s}
+.seat-row:last-child{border-bottom:0}
+.seat-id{font:600 10px var(--mono);color:var(--a);letter-spacing:.12em}
+.seat-id.dissent{color:var(--red)}
+.seat-main-name{font-size:20px;letter-spacing:-.02em;font-weight:700;margin-bottom:3px;color:#f3f6f5}
+.seat-discipline{font:600 11px var(--mono);color:var(--muted);letter-spacing:.1em;margin-bottom:8px;text-transform:uppercase}
+.seat-mandate{font-size:14px;color:#c2c9c7;line-height:1.45;margin-bottom:10px}
+.seat-question{font-size:13px;color:var(--a);line-height:1.4;font-style:italic}
+.seat-status-tag{font:600 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.seat-status-tag.active{color:var(--a)}
+.seat-status-tag.challenging{color:var(--red)}
+
+/* Stage B / Broaden Cards */
+.broaden-grid{display:grid;grid-template-columns:1fr;gap:20px;margin-top:26px}
+.b-card{border:1px solid var(--line2);background:rgba(255,255,255,.015);padding:22px 24px;border-radius:3px}
+.b-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border-bottom:1px solid var(--line2);padding-bottom:10px}
+.b-name{font:700 15px var(--mono);letter-spacing:.1em;color:var(--a)}
+.b-disc{font:600 10px var(--mono);color:var(--faint);text-transform:uppercase}
+.b-pos{font-size:16px;line-height:1.4;color:#f0f3f2;margin-bottom:12px;font-weight:600}
+.b-detail{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line2);font-size:13px;color:var(--muted)}
+.b-detail strong{color:#d5dbda;display:block;font:600 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+
+/* Stage C / Challenge Cards */
+.challenge-alert{border:1px solid var(--line);background:rgba(255,255,255,.02);padding:18px 22px;margin-bottom:24px}
+.c-contra{font-size:17px;line-height:1.4;color:#f1f4f3;font-weight:650;margin-top:4px}
+.challenge-card{border:1px solid rgba(244,106,106,.2);background:rgba(244,106,106,.025);padding:22px 24px;margin-bottom:18px;border-left:3px solid var(--red)}
+.c-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.c-attacker{font:700 14px var(--mono);letter-spacing:.12em;color:var(--red)}
+.c-target{font:600 10px var(--mono);letter-spacing:.1em;color:var(--faint);text-transform:uppercase}
+.c-failure{font-size:16px;line-height:1.38;color:#f4f5f4;font-weight:600;margin-bottom:10px}
+.c-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:13px;color:var(--muted);border-top:1px solid rgba(255,255,255,.05);padding-top:12px;margin-top:10px}
+.c-grid strong{color:#dfe4e3;display:block;font:600 10px var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+
+/* Stage D / Deliberation View */
+.delib-box{border:1px solid var(--line);background:rgba(255,255,255,.015);padding:26px 28px;margin-bottom:26px}
+.delib-friction{font-size:18px;line-height:1.35;color:#e8eeec;margin-bottom:18px;font-weight:650}
+.split-col{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:24px;border-top:1px solid var(--line2);padding-top:24px}
+.split-col h4{font:700 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--a);margin:0 0 14px}
+.split-col.danger h4{color:var(--red)}
+.delib-item{padding:10px 0;border-bottom:1px solid var(--line2);font-size:14px;color:var(--muted);line-height:1.4}
+.delib-item:last-child{border-bottom:0}
+.delib-item strong{color:#eff2f1;display:block;margin-bottom:2px}
+
+/* Stage E / Emergence & Decision Gate */
+.emergence-shell{border:1px solid rgba(139,224,216,.3);background:rgba(139,224,216,.025);padding:36px;border-radius:4px;margin-bottom:32px}
+.emergence-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;flex-wrap:wrap;gap:14px}
+.e-badge{font:700 11px var(--mono);letter-spacing:.2em;color:var(--a);text-transform:uppercase}
+.e-position-pill{font:800 14px var(--mono);letter-spacing:.16em;padding:8px 18px;border-radius:999px;border:1px solid var(--a);color:#fff;background:rgba(139,224,216,.1)}
+.e-position-pill.insufficient{border-color:var(--red);color:var(--red);background:var(--red-bg)}
+.e-basis{font-size:clamp(20px,2vw,28px);line-height:1.24;letter-spacing:-.025em;color:#f3f6f5;font-weight:700;margin-bottom:28px}
+
+.e-pillars{display:grid;grid-template-columns:1fr 1fr;gap:30px;border-top:1px solid var(--line2);padding-top:24px;margin-bottom:28px}
+.e-pillar-col h4{font:700 10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 8px}
+.e-pillar-text{font-size:15px;line-height:1.45;color:#c9cfcd}
+
+.e-conditions{margin-top:20px;border-top:1px dashed var(--line2);padding-top:20px}
+.e-conditions h4{font:700 10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--a);margin:0 0 10px}
+.condition-list{margin:0;padding-left:18px;font-size:14px;color:var(--muted);line-height:1.6}
+
+/* Self-Critique Demo Card */
+.self-critique-card{border:1px solid rgba(191,220,240,.35);background:rgba(191,220,240,.03);padding:28px;margin-top:32px;border-radius:4px}
+.sc-kicker{font:700 10px var(--mono);letter-spacing:.2em;color:var(--c);text-transform:uppercase;margin-bottom:8px}
+.sc-title{font-size:20px;letter-spacing:-.02em;font-weight:750;color:#f0f5f8;margin-bottom:16px}
+.sc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;font-size:13px;color:var(--muted);line-height:1.45}
+.sc-col h5{font:700 10px var(--mono);letter-spacing:.14em;color:var(--b);margin:0 0 6px;text-transform:uppercase}
+
+/* Human Decision Gate */
+.human-gate-shell{border:1px solid var(--line);background:#090d0e;padding:32px;border-radius:4px}
+.hg-kicker{font:700 10px var(--mono);letter-spacing:.2em;color:var(--a);text-transform:uppercase;margin-bottom:8px}
+.hg-title{font-size:24px;font-weight:750;letter-spacing:-.025em;color:#fff;margin-bottom:8px}
+.hg-desc{font-size:15px;color:var(--muted);max-width:680px;line-height:1.45;margin-bottom:24px}
+.hg-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.human-recorded-box{display:none;margin-top:24px;padding:20px;border:1px solid rgba(139,224,216,.4);background:rgba(139,224,216,.03);border-radius:4px}
+.human-recorded-box.recorded{display:block}
+.hr-badge{font:700 10px var(--mono);letter-spacing:.16em;color:var(--a);text-transform:uppercase;margin-bottom:4px}
+.hr-verdict{font-size:18px;font-weight:700;color:#fff;margin-bottom:6px}
+.hr-notes{font-size:14px;color:var(--muted);line-height:1.4}
+.hr-meta{font:600 10px var(--mono);color:var(--faint);letter-spacing:.1em;margin-top:10px}
+
+/* Right Column: The Record */
+.workspace-right{border-left:1px solid var(--line2);background:rgba(7,9,10,.6);padding:32px 24px;overflow-y:auto;font-size:13px}
+.record-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;border-bottom:1px solid var(--line2);padding-bottom:12px}
+.record-title h3{font:700 11px var(--mono);letter-spacing:.18em;color:var(--faint);text-transform:uppercase;margin:0}
+.record-block{margin-bottom:24px}
+.rb-label{font:600 10px var(--mono);letter-spacing:.16em;color:var(--faint);text-transform:uppercase;margin-bottom:6px}
+.rb-text{color:#d5dbd9;line-height:1.45;word-break:break-word}
+.tag-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.tag{font:600 10px var(--mono);padding:3px 7px;border-radius:3px;background:rgba(255,255,255,.04);color:#b2b8b7;border:1px solid var(--line2)}
+.tag.danger{color:var(--red);border-color:var(--red-line);background:var(--red-bg)}
+
+/* Interruption / Error Modal */
+.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);z-index:200;align-items:center;justify-content:center;padding:20px}
+.modal-backdrop.active{display:flex}
+.modal-box{width:min(540px,100%);background:#0c1012;border:1px solid var(--line);padding:32px;border-radius:4px}
+.modal-title{font-size:22px;font-weight:750;letter-spacing:-.02em;color:#fff;margin-bottom:8px}
+.modal-desc{font-size:14px;color:var(--muted);line-height:1.45;margin-bottom:20px}
+
+/* Toast */
+.toast{position:fixed;right:20px;bottom:20px;background:#111516;border:1px solid var(--line);padding:13px 18px;font:600 11px var(--mono);color:#dfe5e3;opacity:0;transform:translateY(8px);pointer-events:none;transition:.3s;z-index:300}
+.toast.show{opacity:1;transform:none}
+
+/* Responsive */
+@media(max-width:1080px){
+  .workspace-grid{grid-template-columns:180px 1fr 280px}
+  .workspace-center{padding:26px 24px}
+}
+@media(max-width:880px){
+  .nav{display:none}
+  .section-grid{grid-template-columns:1fr;gap:28px}
+  .workspace-grid{grid-template-columns:1fr;display:block}
+  .workspace-left{border-right:0;border-bottom:1px solid var(--line2);padding:18px 20px;overflow-x:auto}
+  .ws-nav-list{flex-direction:row;gap:8px}
+  .workspace-right{border-left:0;border-top:1px solid var(--line2)}
+  .table-head,.seat-row{grid-template-columns:70px 1fr}
+  .table-head div:nth-child(3),.seat-row .seat-status-tag{display:none}
+  .b-detail,.c-grid,.split-col,.e-pillars,.sc-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
-<header><div class="wrap"><nav>
-  <a class="logo" href="#top">CONCL<span class="ai">AI</span>VE™</a>
-  <div class="nav"><a href="#experience">Experience</a><a href="#conclave">The Conclave</a><a href="#framework">A–E</a><a href="#governance">Governance</a></div>
-</nav></div></header>
 
-<main id="top">
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="logo" id="homeLogo" title="CONCLAIVE™"></div>
+      <div class="nav-case-meta" id="navCaseMeta">
+        <span class="wb-case" id="navCaseId">CASE / —</span>
+        <span class="badge-mode" id="navCaseMode">STANDARD</span>
+        <button id="navExitBtn" class="btn ghost sm">Exit Conclave</button>
+      </div>
+      <div class="nav" id="mainNav" style="margin-top:27px;height:51px;width:499.328px;font-size:16px;">
+        <a href="#experience">Convene</a>
+        <a href="#conclave">The Conclave</a>
+        <a href="#framework">A–E Protocol</a>
+        <a href="#governance">Governance</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- MAIN LANDING SCREEN -->
+<main id="landingPage">
+
 <section class="hero">
   <div class="wrap">
-    <div class="kicker">An intelligence environment</div>
+    <!-- Logo with glow placed above hero text -->
+    <div class="hero-logo-wrap">
+      <div class="hero-logo-glow"></div>
+      <img src="/CONCLAIVE.svg" alt="CONCLAIVE™ Logo" class="hero-logo-img" id="heroLogoImg" style="height:93px;padding-top:-6px;padding-bottom:13px;padding-left:0px;margin-left:0px;margin-top:-31px;width:370px;">
+    </div>
+
+    <div class="kicker" style="height:23px;width:1287px;font-size:12px;font-family:Verdana;line-height:normal;text-align:left;font-weight:normal;margin-top:31px;">An intelligence environment for difficult decisions</div>
     <h1>Stay with<br>the <span class="gradient">question.</span></h1>
-    <p>Most AI is designed to answer. CONCLAIVE is designed to deliberate — assembling the right intelligence, introducing disagreement, testing the reasoning, and returning the decision to the human.</p>
-    <div class="hero-bottom"><a class="btn" href="#experience">Convene</a><a class="btn ghost" href="#conclave">Enter the concept</a></div>
+    <p>Most AI is designed to answer. CONCLAIVE is designed to deliberate — assembling the right intelligence, broadening the proposition, attacking assumptions, allowing disagreement, and returning the decision to the human.</p>
+    <div class="hero-bottom">
+      <a class="btn" href="#experience" style="font-size:17px;">Convene</a>
+      <button class="btn demo-btn" id="heroDemoBtn" style="font-size:17px;">CONCLAIVE BUILD CONCLAVE</button>
+      <a class="btn ghost" href="#conclave" style="font-size:17px;">The Principle</a>
+    </div>
   </div>
 </section>
 
 <section>
   <div class="wrap section-grid">
-    <div><div class="section-no">01</div><div class="label">The proposition</div></div>
+    <div><div class="section-no">01</div><div class="label" style="font-family:system-ui;font-size:13px;">The proposition</div></div>
     <div>
       <div class="manifesto">A difficult question shouldn't be rushed to an answer.<br><span class="gradient">It should be given enough intelligence to become a decision.</span></div>
-      <p class="copy" style="margin-top:30px">CONCLAIVE turns a difficult question into a controlled deliberation. The system decides what perspectives are relevant, changes the incentive at each stage, preserves the reasoning and keeps human authority outside the machinery.</p>
+      <p class="copy" style="margin-top:28px">CONCLAIVE turns a difficult question into a controlled deliberation. The system decides what perspectives are relevant, changes the incentive at each stage, preserves dialectic reasoning and keeps ultimate human authority outside the machinery.</p>
     </div>
   </div>
 </section>
@@ -93,61 +307,55 @@ textarea{width:100%;min-height:165px;resize:vertical;background:transparent;bord
 <section id="experience" class="demo">
   <div class="wrap">
     <div class="section-no">02</div>
-    <div class="demo-head"><div><h2>Convene<br>the question.</h2></div><div class="demo-note">You do not choose agents, write orchestration prompts or manage a chain. You bring the question. CONCLAIVE assembles the environment around it.</div></div>
-    <div class="prompt-shell">
-      <div class="prompt-top"><div class="prompt-title">THE CONCLAVE / OPEN</div><div class="label">Question</div></div>
+    <div class="demo-head">
+      <div><h2>Convene<br>the question.</h2></div>
+      <div class="demo-note">You do not choose agents, write orchestration prompts or manage a chain. You bring the question. CONCLAIVE determines what the question requires and assembles the environment around it.</div>
+    </div>
+
+    <div class="prompt-shell" id="promptShell">
+      <div class="prompt-top">
+        <div class="prompt-title" style="font-size:16px;font-style:normal;font-weight:normal;">THE CONCLAVE / OPEN INQUIRY</div>
+        <div class="label" id="modeIndicatorLabel" style="height:18px;font-size:15px;">STANDARD DELIBERATION</div>
+      </div>
       <textarea id="q" placeholder="What question are we here to resolve?"></textarea>
-      <div class="demo-actions"><div id="status" class="demo-status">READY</div><button id="run" class="btn">Convene</button></div>
-    </div>
-    <div class="progress"><span id="bar"></span></div>
-    <div class="stages">
-      <div class="stage on">A / Assemble</div><div class="stage">B / Broaden</div><div class="stage">C / Challenge</div><div class="stage">D / Deliberate</div><div class="stage">E / Emerge</div><div class="stage">Human / Decide</div>
-    </div>
-    <div class="output">
-      <div class="output-index" id="oi">STATE / 00</div>
-      <div><div class="output-title" id="ot">The question enters the Conclave.</div><div class="output-text" id="ox">CONCLAIVE determines what kind of thinking the problem requires. The environment forms around the question — not around a fixed list of AI personas.</div><div class="output-meta" id="om">READY FOR INPUT</div></div>
+
+      <div class="context-drawer" id="contextDrawer">
+        <div class="label" style="margin-bottom:6px">Proprietary Context / Constraints / Financials (Optional)</div>
+        <textarea id="contextInput" placeholder="Add confidential variables, market boundaries, team metrics, or critical premises..."></textarea>
+      </div>
+
+      <div class="prompt-controls">
+        <div class="controls-left">
+          <button id="toggleContextBtn" class="toggle-btn" style="font-size:15px;">+ ADD CONTEXT</button>
+          <button id="toggleRedlineBtn" class="toggle-btn" title="Toggle High-Scrutiny Urgent Operating Mode" style="font-size:15px;">MODE / STANDARD</button>
+          <button id="demoTriggerBtn" class="toggle-btn" style="color:var(--b);font-size:15px;">CONCLAIVE BUILD CONCLAVE</button>
+        </div>
+        <div class="controls-right">
+          <button id="conveneBtn" class="btn" style="font-size:15px;">Convene</button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="conclave">
   <div class="wrap section-grid">
-    <div><div class="section-no">03</div><div class="label">The concept</div></div>
+    <div style="font-size:21px;"><div class="section-no">03</div><div class="label">The concept</div></div>
     <div>
       <h2>The question<br>gets a table.</h2>
       <p class="lead">A Conclave is a deliberate environment: a question comes in, relevant intelligence is assembled, competing positions are allowed to form, and the work continues until a defensible position emerges.</p>
-      <div class="room">
-        <div class="room-head"><div>Seat</div><div>Perspective</div><div>State</div></div>
-        <div class="seat"><div class="seat-id">01 / CORE</div><div><div class="seat-name">Strategy</div><div class="seat-role">What creates durable value?</div></div><div class="seat-state">ASSEMBLED</div></div>
-        <div class="seat"><div class="seat-id">02 / CORE</div><div><div class="seat-name">Finance</div><div class="seat-role">What must be true economically?</div></div><div class="seat-state">ASSEMBLED</div></div>
-        <div class="seat"><div class="seat-id">03 / DYNAMIC</div><div><div class="seat-name">Risk</div><div class="seat-role">What can break, and how badly?</div></div><div class="seat-state">ASSEMBLED</div></div>
-        <div class="seat"><div class="seat-id">04 / DYNAMIC</div><div><div class="seat-name">Technology</div><div class="seat-role">What is actually feasible?</div></div><div class="seat-state">ASSEMBLED</div></div>
-        <div class="seat"><div class="seat-id">05 / CONTRARY</div><div><div class="seat-name">Contrarian</div><div class="seat-role">What would make the proposition wrong?</div></div><div class="seat-state">ASSEMBLED</div></div>
+      <div class="table-shell" style="margin-top:36px">
+        <div class="table-head"><div>Seat</div><div>Perspective</div><div>State</div></div>
+        <div class="seat-row"><div class="seat-id">01 / CORE</div><div><div class="seat-main-name">Strategy</div><div class="seat-discipline">What creates durable value?</div></div><div class="seat-status-tag">ASSEMBLED</div></div>
+        <div class="seat-row"><div class="seat-id">02 / CORE</div><div><div class="seat-main-name">Finance</div><div class="seat-discipline">What must be true economically?</div></div><div class="seat-status-tag">ASSEMBLED</div></div>
+        <div class="seat-row"><div class="seat-id">03 / DYNAMIC</div><div><div class="seat-main-name">Risk</div><div class="seat-discipline">What can break, and how badly?</div></div><div class="seat-status-tag">ASSEMBLED</div></div>
+        <div class="seat-row"><div class="seat-id">04 / DYNAMIC</div><div><div class="seat-main-name">Technology</div><div class="seat-discipline">What is actually feasible?</div></div><div class="seat-status-tag">ASSEMBLED</div></div>
+        <div class="seat-row"><div class="seat-id dissent">05 / DISSENT</div><div><div class="seat-main-name">Contrarian</div><div class="seat-discipline">What would make the proposition wrong?</div></div><div class="seat-status-tag challenging">CHALLENGING</div></div>
       </div>
-      <div class="callout"><div class="label">The principle</div><div class="quote">The room does not know what answer you want.</div><p class="copy" style="margin-bottom:0">The panel can receive a neutralised question so your preferred outcome does not become the easiest response to satisfy.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="difference">
-  <div class="wrap section-grid">
-    <div><div class="section-no">04</div><div class="label">The difference</div></div>
-    <div>
-      <h2>Not better prompting.<br>A different process.</h2>
-      <p class="lead">The strongest objection is the simplest: “Isn't this just good prompting?”</p>
-      <div class="compare">
-        <div class="col"><h3>Ordinary prompting</h3><div class="sub">One interaction</div>
-          <div class="row"><b>You define the approach</b>You decide which perspectives to request.</div>
-          <div class="row"><b>You sequence the work</b>You decide what happens next.</div>
-          <div class="row"><b>The model follows your framing</b>The conversation can expose what you appear to want.</div>
-          <div class="row"><b>You decide when to stop</b>A persuasive first answer can become the final answer.</div>
-        </div>
-        <div class="col"><h3>CONCL<span class="ai">AI</span>VE™</h3><div class="sub">An orchestrated deliberation</div>
-          <div class="row"><b>The system assembles the room</b>Relevant disciplines are selected for the nature of the problem.</div>
-          <div class="row"><b>The process changes the process</b>Each stage receives and interrogates what came before.</div>
-          <div class="row"><b>Intent can be separated</b>The panel can receive a neutralised question without the desired outcome attached.</div>
-          <div class="row"><b>The position must survive</b>Challenge, audit and dialectic disagreement precede emergence.</div>
-        </div>
+      <div style="border-left:1px solid var(--a);padding-left:24px;margin-top:36px">
+        <div class="label">The principle</div>
+        <div style="font-size:26px;letter-spacing:-.03em;color:#fff;margin-top:6px;font-weight:600">The room does not know what answer you want.</div>
+        <p class="copy" style="margin-top:8px">The panel receives a neutralised question so the initiator's preferred outcome does not become the easiest response for the system to satisfy.</p>
       </div>
     </div>
   </div>
@@ -155,106 +363,997 @@ textarea{width:100%;min-height:165px;resize:vertical;background:transparent;bord
 
 <section id="framework">
   <div class="wrap section-grid">
-    <div><div class="section-no">05</div><div class="label">The A–E protocol</div></div>
+    <div><div class="section-no">04</div><div class="label">The A–E protocol</div></div>
     <div>
       <h2>Five movements.<br>One deliberation.</h2>
-      <p class="copy">A–E is the visible rhythm of the CONCLAIVE method. The user does not operate these stages manually; the system orchestrates them according to the question.</p>
-      <div class="ab">
-        <div class="phase"><div class="letter">A</div><div class="name">Assemble</div><p>Determine what the question requires. Bring the right disciplines, evidence and perspectives to the table.</p></div>
-        <div class="phase"><div class="letter">B</div><div class="name">Broaden</div><p>Expand the proposition beyond its initial assumptions. Surface constraints, possibilities and stakeholder realities.</p></div>
-        <div class="phase"><div class="letter">C</div><div class="name">Challenge</div><p>Attack the proposition. Seek contradictions, unsupported assumptions, failure modes and reasons it might be wrong.</p></div>
-        <div class="phase"><div class="letter">D</div><div class="name">Deliberate</div><p>Allow competing positions to interact. Independent voices can disagree, reconcile and test one another.</p></div>
-        <div class="phase"><div class="letter">E</div><div class="name">Emerge</div><p>Produce a defensible position — with uncertainty, unresolved questions and the human decision gate clearly preserved.</p></div>
+      <p class="copy">A–E is the visible rhythm of the CONCLAIVE method. The user does not operate these stages manually; the system orchestrates them dynamically according to the question.</p>
+      <div style="margin-top:38px;border-top:1px solid var(--line)">
+        <div style="display:grid;grid-template-columns:50px 220px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--line2)"><div style="font:700 11px var(--mono);color:var(--a)">A</div><div style="font-size:22px;letter-spacing:-.02em;font-weight:650">Assemble</div><p class="copy" style="margin:0">Determine what the question requires. Bring the right disciplines, evidence and perspectives to the table. Identify who would be dangerous to leave out.</p></div>
+        <div style="display:grid;grid-template-columns:50px 220px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--line2)"><div style="font:700 11px var(--mono);color:var(--a)">B</div><div style="font-size:22px;letter-spacing:-.02em;font-weight:650">Broaden</div><p class="copy" style="margin:0">Expand the proposition beyond its initial assumptions. Surface constraints, possibilities, and stakeholder realities.</p></div>
+        <div style="display:grid;grid-template-columns:50px 220px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--line2)"><div style="font:700 11px var(--mono);color:var(--a)">C</div><div style="font-size:22px;letter-spacing:-.02em;font-weight:650">Challenge</div><p class="copy" style="margin:0">Attack the proposition. Seek contradictions, unsupported assumptions, failure modes and reasons it might be wrong.</p></div>
+        <div style="display:grid;grid-template-columns:50px 220px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--line2)"><div style="font:700 11px var(--mono);color:var(--a)">D</div><div style="font-size:22px;letter-spacing:-.02em;font-weight:650">Deliberate</div><p class="copy" style="margin:0">Allow competing positions to interact. Disagreement is a valid output. Independent disciplines can clash, reconcile, and test one another.</p></div>
+        <div style="display:grid;grid-template-columns:50px 220px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--line2)"><div style="font:700 11px var(--mono);color:var(--a)">E</div><div style="font-size:22px;letter-spacing:-.02em;font-weight:650">Emerge</div><p class="copy" style="margin:0">Produce a defensible position — with uncertainty, unresolved questions and the human decision gate clearly preserved.</p></div>
       </div>
-      <div class="callout"><div class="label">Exceptional mode</div><div class="quote">REDLINE / When the question cannot wait.</div><p class="copy" style="margin-bottom:0">A higher-scrutiny operating mode for urgent cases: tighter escalation, compressed deliberation and immediate human intervention where required.</p></div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap section-grid">
-    <div><div class="section-no">06</div><div class="label">The hidden machinery</div></div>
-    <div>
-      <h2>You never see<br>the machinery.</h2>
-      <p class="lead">The prompts, model routing, orchestration and internal choreography stay behind the interface.</p>
-      <div class="hidden"><p class="copy" style="margin:0"><strong>The user sees the transformation.</strong> The same question returns with a different state: assembled, broadened, challenged, deliberated and emerged.</p><p class="copy" style="margin:14px 0 0">The complexity belongs in the system. The interface remains calm.</p></div>
     </div>
   </div>
 </section>
 
 <section id="governance">
   <div class="wrap section-grid">
-    <div><div class="section-no">07</div><div class="label">Governance</div></div>
+    <div><div class="section-no">05</div><div class="label">Governance</div></div>
     <div>
       <h2>Governance lives<br>inside the process.</h2>
       <p class="lead">Governance is not a final compliance screen. It is expressed through the way a question is assembled, tested, challenged, recorded and returned to human authority.</p>
-      <div class="guardrails">
-        <div class="g"><div class="label">Guardrail</div><div class="label">Primary stage</div><div class="label">Product expression</div></div>
-        <div class="g"><div class="name">Accountability</div><div class="stage-name">Command</div><div>Named decision authority, ownership and explicit human clearance.</div></div>
-        <div class="g"><div class="name">Risk management</div><div class="stage-name">Challenge → Emerge</div><div>Material risks are surfaced early and deliberately attacked later.</div></div>
-        <div class="g"><div class="name">Data governance</div><div class="stage-name">Assemble / Record</div><div>Controlled inputs, provenance and evidence state form part of the case.</div></div>
-        <div class="g"><div class="name">Testing AI models and systems</div><div class="stage-name">Challenge</div><div>Outputs are stress-tested rather than accepted at first pass.</div></div>
-        <div class="g"><div class="name">Human control or intervention</div><div class="stage-name">Throughout</div><div>The system advises; the human retains decision authority.</div></div>
-        <div class="g"><div class="name">Transparency</div><div class="stage-name">Record / Emerge</div><div>Assumptions, evidence state and decision history can be preserved.</div></div>
-        <div class="g"><div class="name">Contestability</div><div class="stage-name">Deliberate</div><div>Disagreement is a designed function, not an error state.</div></div>
-        <div class="g"><div class="name">Supply-chain transparency</div><div class="stage-name">Assemble</div><div>External assets and sources can carry provenance into the case.</div></div>
-        <div class="g"><div class="name">Record keeping</div><div class="stage-name">Emerge / Record</div><div>Chronology, changes, unresolved issues and authorisations can be retained.</div></div>
-        <div class="g"><div class="name">Stakeholder engagement</div><div class="stage-name">Broaden / Deliberate</div><div>Relevant stakeholder perspectives can broaden the room before resolution.</div></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- CONCLAVE FOCUSED WORKSPACE -->
+<div id="workspace">
+  <div class="workspace-bar">
+    <div class="wrap workspace-bar-inner">
+      <div class="wb-meta">
+        <span class="wb-case" id="wsCaseId">CASE / INITIALIZING</span>
+        <span class="badge-mode" id="wsModeBadge">STANDARD</span>
+        <span class="wb-stage" id="wsStageIndicator"><span class="wb-live-pulse" id="wsPulse"></span>INTAKE DIAGNOSIS</span>
+      </div>
+      <div class="wb-actions">
+        <button class="btn ghost sm" id="toggleRecordBtn">The Record</button>
+        <button class="btn ghost sm" id="returnQuestionBtn">Return to Question</button>
       </div>
     </div>
   </div>
-</section>
 
-<section>
-  <div class="wrap section-grid">
-    <div><div class="section-no">08</div><div class="label">Dynamic intelligence</div></div>
-    <div>
-      <h2>The room changes<br>with the question.</h2>
-      <p class="lead">You never select “Legal Agent”, “CFO Agent” or “UX Agent”. CONCLAIVE infers which disciplines matter and assembles the appropriate seats behind the scenes.</p>
-      <p class="copy" style="margin-top:28px"><strong style="color:#fff">Persistent anchors.</strong> A small leadership layer can remain present across cases for product, systems and AI-native thinking. <strong style="color:#fff">Specialists on demand.</strong> Legal, finance, science, engineering, operations, UX, communications and other expert perspectives can be introduced only when the question requires them.</p>
+  <div class="workspace-grid">
+    <!-- LEFT: Protocol Navigation -->
+    <aside class="workspace-left">
+      <div class="ws-nav-title">Visible Protocol</div>
+      <div class="ws-nav-list" id="wsNavList">
+        <div class="ws-nav-item active" data-stage="assemble" id="navItemAssemble">
+          <span>A / Assemble</span><span class="step-state" id="stStateA">RUNNING</span>
+        </div>
+        <div class="ws-nav-item" data-stage="broaden" id="navItemBroaden">
+          <span>B / Broaden</span><span class="step-state" id="stStateB">PENDING</span>
+        </div>
+        <div class="ws-nav-item" data-stage="challenge" id="navItemChallenge">
+          <span>C / Challenge</span><span class="step-state" id="stStateC">PENDING</span>
+        </div>
+        <div class="ws-nav-item" data-stage="deliberate" id="navItemDeliberate">
+          <span>D / Deliberate</span><span class="step-state" id="stStateD">PENDING</span>
+        </div>
+        <div class="ws-nav-item" data-stage="emerge" id="navItemEmerge">
+          <span>E / Emerge</span><span class="step-state" id="stStateE">PENDING</span>
+        </div>
+        <div class="ws-nav-item" data-stage="decision" id="navItemDecision">
+          <span>Human / Decide</span><span class="step-state" id="stStateDecide">GATE</span>
+        </div>
+      </div>
+
+      <div style="margin-top:40px;padding-top:20px;border-top:1px solid var(--line2)">
+        <div class="label" style="margin-bottom:8px">Conclave Principle</div>
+        <div style="font:600 11px var(--mono);color:var(--muted);line-height:1.4">
+          DISAGREEMENT IS A VALID OUTPUT. The machine does not decide.
+        </div>
+      </div>
+    </aside>
+
+    <!-- CENTER: Current Stage & The Table -->
+    <section class="workspace-center">
+      <!-- Transforming Question Banner -->
+      <div class="transform-banner" id="transformBanner">
+        <div class="tb-kicker" id="tbKicker">Stage A — The Question Enters The Conclave</div>
+        <div class="tb-q" id="tbQuestion">Initializing deliberation...</div>
+      </div>
+
+      <!-- STAGE A VIEW -->
+      <div class="stage-view active" id="viewAssemble">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:16px">
+          <div>
+            <h3 style="margin:0 0 6px;font-size:22px;letter-spacing:-.02em">The Room is Assembled</h3>
+            <p class="copy" style="margin:0" id="assemblyRationale">Selecting disciplines answering: Who would be dangerous to leave out?</p>
+          </div>
+          <div class="label" id="seatCountBadge">0 SEATS</div>
+        </div>
+
+        <div class="table-shell">
+          <div class="table-head"><div>Seat</div><div>Perspective & Mandate</div><div>Status</div></div>
+          <div id="seatsTableBody">
+            <div style="padding:28px 0;color:var(--faint);font:600 11px var(--mono);letter-spacing:.12em">SUMMONING DISCIPLINARY SEATS...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE B VIEW -->
+      <div class="stage-view" id="viewBroaden">
+        <div style="margin-bottom:20px">
+          <h3 style="margin:0 0 6px;font-size:22px;letter-spacing:-.02em">The Proposition Broadened</h3>
+          <p class="copy" style="margin:0">Independent perspectives expand beyond the initial assumptions. What did the original question fail to contain?</p>
+        </div>
+        <div class="broaden-grid" id="broadenGrid"></div>
+      </div>
+
+      <!-- STAGE C VIEW -->
+      <div class="stage-view" id="viewChallenge">
+        <div class="challenge-alert" id="challengeAlert">
+          <div class="label" style="color:var(--red)">Focal Contradiction Exposed</div>
+          <div class="c-contra" id="focalContradictionText">Analyzing adversarial tensions...</div>
+        </div>
+        <div style="margin-bottom:20px">
+          <h3 style="margin:0 0 6px;font-size:22px;letter-spacing:-.02em">Adversarial Scrutiny</h3>
+          <p class="copy" style="margin:0">Stress-testing the proposition: identifying failure modes, unexamined assumptions, and missing empirical evidence.</p>
+        </div>
+        <div id="challengeList"></div>
+      </div>
+
+      <!-- STAGE D VIEW -->
+      <div class="stage-view" id="viewDeliberate">
+        <div class="delib-box">
+          <div class="label" style="margin-bottom:8px">Dialectic Friction Summary</div>
+          <div class="delib-friction" id="delibFrictionSummary">Synthesizing debate...</div>
+          <p class="copy" id="delibSummaryText" style="margin:0"></p>
+
+          <div class="split-col">
+            <div>
+              <h4>Shared Ground (Agreement)</h4>
+              <div id="agreementsList"></div>
+            </div>
+            <div class="danger">
+              <h4>Material Disagreement (Preserved)</h4>
+              <div id="disagreementsList"></div>
+            </div>
+          </div>
+
+          <div class="split-col" style="margin-top:20px">
+            <div>
+              <h4>Strongest Case For</h4>
+              <p class="copy" id="delibStrongestFor" style="margin:0"></p>
+            </div>
+            <div class="danger">
+              <h4>Strongest Case Against</h4>
+              <p class="copy" id="delibStrongestAgainst" style="margin:0"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE E VIEW & HUMAN DECISION GATE -->
+      <div class="stage-view" id="viewEmerge">
+        <div class="emergence-shell">
+          <div class="emergence-top">
+            <div class="e-badge">STAGE E / EMERGENCE</div>
+            <div class="e-position-pill" id="emergencePositionPill">PROCEED WITH CONDITIONS</div>
+          </div>
+          <div class="e-basis" id="emergenceBasisText">Emerging rationale...</div>
+
+          <div class="e-pillars">
+            <div class="e-pillar-col">
+              <h4>Supported By</h4>
+              <div class="e-pillar-text" id="emergenceSupportText"></div>
+            </div>
+            <div class="e-pillar-col">
+              <h4>Strongest Objection & Risk</h4>
+              <div class="e-pillar-text" id="emergenceObjectionText"></div>
+            </div>
+          </div>
+
+          <div class="e-conditions" id="emergenceConditionsBlock">
+            <h4>Conditions For Execution</h4>
+            <ol class="condition-list" id="emergenceConditionsList"></ol>
+          </div>
+
+          <div style="margin-top:20px;border-top:1px dashed var(--line2);padding-top:16px">
+            <div class="label">Recommended Immediate Next Action</div>
+            <div style="font-size:16px;color:#fff;font-weight:600;margin-top:4px" id="emergenceNextActionText"></div>
+          </div>
+        </div>
+
+        <!-- Optional Self-Critique Demo Block -->
+        <div class="self-critique-card" id="selfCritiqueBlock" style="display:none">
+          <div class="sc-kicker">CONCLAIVE Self-Critique Case Output</div>
+          <div class="sc-title">Product Deliberation on CONCLAIVE vs. AI Chatbots</div>
+          <div class="sc-grid">
+            <div class="sc-col">
+              <h5>What Makes CONCLAIVE Materially Different</h5>
+              <p id="scDifferent"></p>
+              <h5 style="margin-top:14px">Essential UX Features</h5>
+              <p id="scEssential"></p>
+            </div>
+            <div class="sc-col">
+              <h5>What Remains Merely Multi-Agent Prompting</h5>
+              <p id="scMerelyPrompting"></p>
+              <h5 style="margin-top:14px">Smallest Compelling Proof</h5>
+              <p id="scSmallestProof"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Human Decision Gate -->
+        <div class="human-gate-shell" id="humanGateShell">
+          <div class="hg-kicker">Human Decision Gate</div>
+          <div class="hg-title">The Authority Remains With The Human</div>
+          <div class="hg-desc">The Conclave has completed its deliberation and returned the defensible position to you. The system does not make the decision. You own the consequence.</div>
+          <div class="hg-actions">
+            <button class="btn" id="openDecideModalBtn">Decide</button>
+            <button class="btn ghost" id="gateReturnBtn">Return to Question</button>
+            <button class="btn ghost" id="gateUnresolvedBtn">Open Unresolved Issues</button>
+          </div>
+
+          <div class="human-recorded-box" id="humanRecordedBox">
+            <div class="hr-badge">RECORDED HUMAN JUDGEMENT</div>
+            <div class="hr-verdict" id="recordedVerdictText">Decision recorded.</div>
+            <div class="hr-notes" id="recordedNotesText"></div>
+            <div class="hr-meta" id="recordedMetaText"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: The Record (Collapsible Panel) -->
+    <aside class="workspace-right" id="workspaceRight">
+      <div class="record-title">
+        <h3>The Record</h3>
+        <button class="btn ghost sm" id="copyCaseBtn" title="Copy Case Dossier">Copy Record</button>
+      </div>
+
+      <div class="record-block">
+        <div class="rb-label">Original Question</div>
+        <div class="rb-text" id="recOriginalQ">—</div>
+      </div>
+
+      <div class="record-block">
+        <div class="rb-label">Neutralized Framing</div>
+        <div class="rb-text" id="recNeutralQ" style="color:var(--a)">—</div>
+      </div>
+
+      <div class="record-block">
+        <div class="rb-label">Stakes & Classification</div>
+        <div class="tag-wrap" id="recTags"></div>
+      </div>
+
+      <div class="record-block">
+        <div class="rb-label">Identified Assumptions</div>
+        <ul style="margin:0;padding-left:18px;color:var(--muted);line-height:1.5" id="recAssumptions"></ul>
+      </div>
+
+      <div class="record-block">
+        <div class="rb-label">Material Unknowns</div>
+        <ul style="margin:0;padding-left:18px;color:var(--muted);line-height:1.5" id="recUnknowns"></ul>
+      </div>
+
+      <div class="record-block">
+        <div class="rb-label">Unresolved Questions for Judgement</div>
+        <ul style="margin:0;padding-left:18px;color:var(--a);line-height:1.5" id="recUnresolved"></ul>
+      </div>
+
+      <div class="record-block" id="recDecisionBlock" style="display:none">
+        <div class="rb-label">Human Clearance Status</div>
+        <div class="rb-text" id="recDecisionStatus" style="font-weight:650;color:#fff">—</div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- Modal: Human Decision Entry -->
+<div class="modal-backdrop" id="decisionModal">
+  <div class="modal-box">
+    <div class="label" style="color:var(--a);margin-bottom:6px">HUMAN DECISION GATE</div>
+    <div class="modal-title">Record Human Judgment</div>
+    <div class="modal-desc">Enter your verdict on this Conclave case. Your decision, conditions, and rationale will be sealed in the case record.</div>
+
+    <div style="margin-bottom:16px">
+      <label class="label" style="display:block;margin-bottom:6px">Verdict</label>
+      <select id="modalVerdictSelect" style="width:100%;background:#141a1c;border:1px solid var(--line);color:#fff;padding:10px 12px;border-radius:4px;font:600 12px var(--mono)">
+        <option value="PROCEED WITH CONDITIONS">PROCEED WITH CONDITIONS</option>
+        <option value="PROCEED">PROCEED UNCONDITIONALLY</option>
+        <option value="MODIFY PLAN">MODIFY PLAN BEFORE ACTION</option>
+        <option value="COMMISSION INVESTIGATION">COMMISSION INVESTIGATION</option>
+        <option value="DEFER DECISION">DEFER PENDING DATA</option>
+        <option value="DO NOT PROCEED">REJECT / DO NOT PROCEED</option>
+      </select>
+    </div>
+
+    <div style="margin-bottom:20px">
+      <label class="label" style="display:block;margin-bottom:6px">Operational Notes & Directive</label>
+      <textarea id="modalDecisionNotes" style="min-height:90px;font-size:14px;padding:12px;background:#141a1c;border:1px solid var(--line);border-radius:4px;line-height:1.4" placeholder="Specific stipulations, designated owners, deadlines, or escalation thresholds..."></textarea>
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;gap:12px">
+      <button class="btn ghost sm" id="closeDecisionModalBtn">Cancel</button>
+      <button class="btn sm" id="submitDecisionBtn">Seal Decision</button>
     </div>
   </div>
-</section>
+</div>
 
-<section class="final">
-  <div class="wrap">
-    <div class="section-no">09</div>
-    <div class="label">The proposition</div>
-    <h2>Don't rush the answer.<br><span class="gradient">Stay with the question.</span></h2>
-    <p class="lead">The prompts disappear. The room disappears. What remains is a more deliberately formed position — and the human decision that follows.</p>
-    <div class="hero-bottom"><a class="btn" href="#experience">Convene a question</a></div>
+<!-- Modal: Interruption / Error -->
+<div class="modal-backdrop" id="errorModal">
+  <div class="modal-box" style="border-color:var(--red-line)">
+    <div class="label" style="color:var(--red);margin-bottom:6px">CONCLAVE INTERRUPTED</div>
+    <div class="modal-title" id="errTitle">Protocol Failure</div>
+    <div class="modal-desc" id="errDesc">An unexpected disruption occurred during deliberation. Previous stages have been preserved.</div>
+    <div style="display:flex;justify-content:flex-end;gap:12px">
+      <button class="btn ghost sm" id="errReturnBtn">Return to Question</button>
+      <button class="btn sm" id="errRetryBtn">Retry Stage</button>
+    </div>
   </div>
-</section>
-</main>
+</div>
 
-<footer><div class="wrap footer"><div>CONCL<span class="ai">AI</span>VE™ / Product concept</div><div>A–E Protocol / Intelligence environment</div></div></footer>
 <div id="toast" class="toast"></div>
 
+<!-- Client App Script -->
 <script>
-const outputs=[
- {t:'The question enters the Conclave.',x:'CONCLAIVE determines what kind of thinking the problem requires. The environment forms around the question — not around a fixed list of AI personas.',m:'A / ASSEMBLE — CONTEXT ESTABLISHED'},
- {t:'The proposition broadens.',x:'Relevant disciplines, constraints and stakeholder realities are brought into the case. The original framing is no longer the only framing in the room.',m:'B / BROADEN — POSITION EXPANDED'},
- {t:'The proposition is attacked.',x:'The system changes its incentive. Earlier reasoning becomes the object of scrutiny: assumptions, gaps, contradictions and failure modes are actively sought.',m:'C / CHALLENGE — ADVERSARIAL REVIEW'},
- {t:'The room is allowed to disagree.',x:'Independent perspectives interact. The panel can receive neutralised questions so the Director’s preferred outcome does not become the easiest answer to satisfy.',m:'D / DELIBERATE — DIALECTIC REVIEW'},
- {t:'A position emerges.',x:'The surviving reasoning is synthesised into a position record: what is supported, what remains uncertain, what should happen next, and where human authority is required.',m:'E / EMERGE — POSITION FORMED'},
- {t:'The decision returns to the human.',x:'CONCLAIVE does not take the decision. It returns the case with its reasoning, disagreements, uncertainty and proposed next action visible to the person who owns the consequence.',m:'HUMAN — DECISION GATE'}
-];
-const run=document.getElementById('run'),q=document.getElementById('q'),bar=document.getElementById('bar'),st=document.getElementById('status'),oi=document.getElementById('oi'),ot=document.getElementById('ot'),ox=document.getElementById('ox'),om=document.getElementById('om'),stageEls=[...document.querySelectorAll('.stage')];
-let timer;
-run.addEventListener('click',()=>{
- if(!q.value.trim()){q.focus();show('Enter a question first.');return}
- clearInterval(timer);let i=0;run.disabled=true;st.textContent='CONCLAVE IN SESSION';
- const tick=()=>{
-  const d=outputs[i];
-  oi.textContent='STATE / '+String(i+1).padStart(2,'0');ot.textContent=d.t;ox.textContent=d.x;om.textContent=d.m;
-  bar.style.width=((i+1)/outputs.length*100)+'%';
-  stageEls.forEach((s,n)=>s.classList.toggle('on',n===i));
-  i++;
-  if(i>=outputs.length){clearInterval(timer);run.disabled=false;st.textContent='COMPLETE';show('The position has emerged. The decision remains human.')}
- };
- tick();timer=setInterval(tick,1250);
+// State Management
+const state = {
+  activeCase: null,
+  currentStage: 'assemble',
+  isRedline: false,
+  isContextOpen: false,
+  eventSource: null,
+  isSubmitting: false,
+  lastQuestion: '',
+  lastContext: '',
+  isDemo: false
+};
+
+// Elements
+const landingPage = document.getElementById('landingPage');
+const workspace = document.getElementById('workspace');
+const homeLogo = document.getElementById('homeLogo');
+const navCaseMeta = document.getElementById('navCaseMeta');
+const navCaseId = document.getElementById('navCaseId');
+const navCaseMode = document.getElementById('navCaseMode');
+const navExitBtn = document.getElementById('navExitBtn');
+const mainNav = document.getElementById('mainNav');
+
+const qInput = document.getElementById('q');
+const contextDrawer = document.getElementById('contextDrawer');
+const contextInput = document.getElementById('contextInput');
+const toggleContextBtn = document.getElementById('toggleContextBtn');
+const toggleRedlineBtn = document.getElementById('toggleRedlineBtn');
+const demoTriggerBtn = document.getElementById('demoTriggerBtn');
+const heroDemoBtn = document.getElementById('heroDemoBtn');
+const conveneBtn = document.getElementById('conveneBtn');
+
+// Workspace Elements
+const wsCaseId = document.getElementById('wsCaseId');
+const wsModeBadge = document.getElementById('wsModeBadge');
+const wsStageIndicator = document.getElementById('wsStageIndicator');
+const wsPulse = document.getElementById('wsPulse');
+const returnQuestionBtn = document.getElementById('returnQuestionBtn');
+const toggleRecordBtn = document.getElementById('toggleRecordBtn');
+const workspaceRight = document.getElementById('workspaceRight');
+
+const transformBanner = document.getElementById('transformBanner');
+const tbKicker = document.getElementById('tbKicker');
+const tbQuestion = document.getElementById('tbQuestion');
+
+const navItems = {
+  assemble: document.getElementById('navItemAssemble'),
+  broaden: document.getElementById('navItemBroaden'),
+  challenge: document.getElementById('navItemChallenge'),
+  deliberate: document.getElementById('navItemDeliberate'),
+  emerge: document.getElementById('navItemEmerge'),
+  decision: document.getElementById('navItemDecision')
+};
+
+const stageViews = {
+  assemble: document.getElementById('viewAssemble'),
+  broaden: document.getElementById('viewBroaden'),
+  challenge: document.getElementById('viewChallenge'),
+  deliberate: document.getElementById('viewDeliberate'),
+  emerge: document.getElementById('viewEmerge')
+};
+
+const stageStates = {
+  A: document.getElementById('stStateA'),
+  B: document.getElementById('stStateB'),
+  C: document.getElementById('stStateC'),
+  D: document.getElementById('stStateD'),
+  E: document.getElementById('stStateE'),
+  decide: document.getElementById('stStateDecide')
+};
+
+const seatsTableBody = document.getElementById('seatsTableBody');
+const seatCountBadge = document.getElementById('seatCountBadge');
+const assemblyRationale = document.getElementById('assemblyRationale');
+
+const broadenGrid = document.getElementById('broadenGrid');
+const challengeAlert = document.getElementById('challengeAlert');
+const focalContradictionText = document.getElementById('focalContradictionText');
+const challengeList = document.getElementById('challengeList');
+
+const delibFrictionSummary = document.getElementById('delibFrictionSummary');
+const delibSummaryText = document.getElementById('delibSummaryText');
+const agreementsList = document.getElementById('agreementsList');
+const disagreementsList = document.getElementById('disagreementsList');
+const delibStrongestFor = document.getElementById('delibStrongestFor');
+const delibStrongestAgainst = document.getElementById('delibStrongestAgainst');
+
+const emergencePositionPill = document.getElementById('emergencePositionPill');
+const emergenceBasisText = document.getElementById('emergenceBasisText');
+const emergenceSupportText = document.getElementById('emergenceSupportText');
+const emergenceObjectionText = document.getElementById('emergenceObjectionText');
+const emergenceConditionsList = document.getElementById('emergenceConditionsList');
+const emergenceNextActionText = document.getElementById('emergenceNextActionText');
+const selfCritiqueBlock = document.getElementById('selfCritiqueBlock');
+
+// Human Decision Elements
+const openDecideModalBtn = document.getElementById('openDecideModalBtn');
+const gateReturnBtn = document.getElementById('gateReturnBtn');
+const gateUnresolvedBtn = document.getElementById('gateUnresolvedBtn');
+const humanRecordedBox = document.getElementById('humanRecordedBox');
+const recordedVerdictText = document.getElementById('recordedVerdictText');
+const recordedNotesText = document.getElementById('recordedNotesText');
+const recordedMetaText = document.getElementById('recordedMetaText');
+
+const decisionModal = document.getElementById('decisionModal');
+const closeDecisionModalBtn = document.getElementById('closeDecisionModalBtn');
+const submitDecisionBtn = document.getElementById('submitDecisionBtn');
+const modalVerdictSelect = document.getElementById('modalVerdictSelect');
+const modalDecisionNotes = document.getElementById('modalDecisionNotes');
+
+// Record Elements
+const recOriginalQ = document.getElementById('recOriginalQ');
+const recNeutralQ = document.getElementById('recNeutralQ');
+const recTags = document.getElementById('recTags');
+const recAssumptions = document.getElementById('recAssumptions');
+const recUnknowns = document.getElementById('recUnknowns');
+const recUnresolved = document.getElementById('recUnresolved');
+const recDecisionBlock = document.getElementById('recDecisionBlock');
+const recDecisionStatus = document.getElementById('recDecisionStatus');
+const copyCaseBtn = document.getElementById('copyCaseBtn');
+
+// Error Elements
+const errorModal = document.getElementById('errorModal');
+const errTitle = document.getElementById('errTitle');
+const errDesc = document.getElementById('errDesc');
+const errReturnBtn = document.getElementById('errReturnBtn');
+const errRetryBtn = document.getElementById('errRetryBtn');
+
+// Toast Utility
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// UI Toggles
+toggleContextBtn.addEventListener('click', () => {
+  state.isContextOpen = !state.isContextOpen;
+  contextDrawer.classList.toggle('open', state.isContextOpen);
+  toggleContextBtn.classList.toggle('active', state.isContextOpen);
+  toggleContextBtn.textContent = state.isContextOpen ? '− HIDE CONTEXT' : '+ ADD CONTEXT';
 });
-function show(s){const t=document.getElementById('toast');t.textContent=s;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
+
+toggleRedlineBtn.addEventListener('click', () => {
+  state.isRedline = !state.isRedline;
+  toggleRedlineBtn.classList.toggle('active', state.isRedline);
+  if (state.isRedline) {
+    toggleRedlineBtn.textContent = 'MODE / REDLINE (High Scrutiny)';
+    toggleRedlineBtn.style.color = 'var(--red)';
+    document.getElementById('modeIndicatorLabel').textContent = 'REDLINE / HIGH SCRUTINY MODE';
+    document.getElementById('modeIndicatorLabel').style.color = 'var(--red)';
+  } else {
+    toggleRedlineBtn.textContent = 'MODE / STANDARD';
+    toggleRedlineBtn.style.color = '';
+    document.getElementById('modeIndicatorLabel').textContent = 'STANDARD DELIBERATION';
+    document.getElementById('modeIndicatorLabel').style.color = '';
+  }
+});
+
+// Demo Setup
+function setupDemo() {
+  qInput.value = 'Can CONCLAIVE become something genuinely different from an AI chatbot?';
+  state.isDemo = true;
+  qInput.focus();
+  document.getElementById('experience').scrollIntoView({ behavior: 'smooth' });
+  showToast('CONCLAIVE Build Conclave question loaded.');
+}
+demoTriggerBtn.addEventListener('click', setupDemo);
+heroDemoBtn.addEventListener('click', setupDemo);
+
+// Nav Switching
+homeLogo.addEventListener('click', exitWorkspace);
+navExitBtn.addEventListener('click', exitWorkspace);
+returnQuestionBtn.addEventListener('click', exitWorkspace);
+gateReturnBtn.addEventListener('click', exitWorkspace);
+errReturnBtn.addEventListener('click', exitWorkspace);
+
+function exitWorkspace() {
+  if (state.eventSource) {
+    state.eventSource.close();
+    state.eventSource = null;
+  }
+  state.isSubmitting = false;
+  conveneBtn.disabled = false;
+  workspace.classList.remove('active');
+  landingPage.style.display = 'block';
+  navCaseMeta.classList.remove('active');
+  mainNav.style.display = 'flex';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function enterWorkspace(caseId, mode, question) {
+  landingPage.style.display = 'none';
+  workspace.classList.add('active');
+  navCaseMeta.classList.add('active');
+  mainNav.style.display = 'none';
+
+  navCaseId.textContent = `CASE / ${caseId.slice(-6)}`;
+  wsCaseId.textContent = `CASE / ${caseId}`;
+  
+  const isRed = mode === 'REDLINE';
+  navCaseMode.textContent = mode;
+  navCaseMode.className = `badge-mode ${isRed ? 'redline' : ''}`;
+  wsModeBadge.textContent = mode;
+  wsModeBadge.className = `badge-mode ${isRed ? 'redline' : ''}`;
+  wsPulse.className = `wb-live-pulse ${isRed ? 'redline' : ''}`;
+  transformBanner.className = `transform-banner ${isRed ? 'redline' : ''}`;
+
+  tbKicker.textContent = 'Stage 0 — Intake Diagnosis';
+  tbQuestion.textContent = question;
+
+  recOriginalQ.textContent = question;
+  recNeutralQ.textContent = 'Neutralizing framing...';
+  recTags.innerHTML = '';
+  recAssumptions.innerHTML = '<li>Analyzing...</li>';
+  recUnknowns.innerHTML = '<li>Identifying unknowns...</li>';
+  recUnresolved.innerHTML = '<li>Awaiting deliberation...</li>';
+
+  // Reset stages
+  Object.keys(stageStates).forEach(k => {
+    if (stageStates[k]) stageStates[k].textContent = 'PENDING';
+  });
+  stageStates.A.textContent = 'RUNNING';
+
+  switchStageView('assemble');
+  window.scrollTo({ top: 0 });
+}
+
+// Stage Navigation
+function switchStageView(stageKey) {
+  state.currentStage = stageKey;
+  Object.keys(navItems).forEach(k => {
+    if (navItems[k]) navItems[k].classList.toggle('active', k === stageKey);
+  });
+  Object.keys(stageViews).forEach(k => {
+    if (stageViews[k]) stageViews[k].classList.toggle('active', k === stageKey);
+  });
+}
+
+Object.keys(navItems).forEach(k => {
+  navItems[k].addEventListener('click', () => {
+    if (k === 'decision') {
+      switchStageView('emerge');
+      document.getElementById('humanGateShell').scrollIntoView({ behavior: 'smooth' });
+    } else {
+      switchStageView(k);
+    }
+  });
+});
+
+// Toggle Record drawer on mobile / desktop
+toggleRecordBtn.addEventListener('click', () => {
+  if (window.innerWidth <= 880) {
+    workspaceRight.style.display = workspaceRight.style.display === 'none' ? 'block' : 'none';
+  } else {
+    workspaceRight.style.display = workspaceRight.style.display === 'none' ? 'block' : 'none';
+  }
+});
+
+// Convene Submit Handler
+conveneBtn.addEventListener('click', startConclave);
+
+function startConclave() {
+  const question = qInput.value.trim();
+  if (!question) {
+    qInput.focus();
+    showToast('Enter a question to convene the Conclave.');
+    return;
+  }
+
+  const context = contextInput.value.trim();
+  const mode = state.isRedline ? 'REDLINE' : 'STANDARD';
+  const isDemo = state.isDemo || question.toLowerCase().includes('chatbot');
+
+  state.isSubmitting = true;
+  state.lastQuestion = question;
+  state.lastContext = context;
+  conveneBtn.disabled = true;
+
+  const tempCaseId = `CASE-${Date.now().toString(36).toUpperCase()}`;
+  enterWorkspace(tempCaseId, mode, question);
+
+  // Connect SSE
+  connectSSE(question, context, mode, isDemo);
+}
+
+function connectSSE(question, context, mode, isDemo) {
+  if (state.eventSource) {
+    state.eventSource.close();
+  }
+
+  const url = `/api/conclave/stream?q=${encodeURIComponent(question)}&context=${encodeURIComponent(context)}&mode=${encodeURIComponent(mode)}&isDemo=${isDemo}`;
+  const es = new EventSource(url);
+  state.eventSource = es;
+
+  es.addEventListener('case.created', e => {
+    const data = JSON.parse(e.data);
+    wsCaseId.textContent = `CASE / ${data.caseId}`;
+    navCaseId.textContent = `CASE / ${data.caseId.slice(-6)}`;
+    showToast('Case created. Intake engine active.');
+  });
+
+  es.addEventListener('stage.started', e => {
+    const data = JSON.parse(e.data);
+    wsStageIndicator.innerHTML = `<span class="wb-live-pulse ${state.isRedline ? 'redline' : ''}"></span>${data.label.toUpperCase()}`;
+    
+    if (data.stage === 'assemble') {
+      stageStates.A.textContent = 'RUNNING';
+      switchStageView('assemble');
+    } else if (data.stage === 'broaden') {
+      stageStates.B.textContent = 'RUNNING';
+      switchStageView('broaden');
+    } else if (data.stage === 'challenge') {
+      stageStates.C.textContent = 'RUNNING';
+      switchStageView('challenge');
+    } else if (data.stage === 'deliberate') {
+      stageStates.D.textContent = 'RUNNING';
+      switchStageView('deliberate');
+    } else if (data.stage === 'emerge') {
+      stageStates.E.textContent = 'RUNNING';
+      switchStageView('emerge');
+    }
+  });
+
+  es.addEventListener('intake.completed', e => {
+    const data = JSON.parse(e.data);
+    recNeutralQ.textContent = data.neutralQuestion;
+    tbKicker.textContent = 'Neutralized Framing (Dialectic)';
+    tbQuestion.textContent = data.neutralQuestion;
+
+    recTags.innerHTML = `
+      <span class="tag">${data.problemType}</span>
+      <span class="tag">${data.stakes} STAKES</span>
+      <span class="tag ${data.mode === 'REDLINE' ? 'danger' : ''}">MODE: ${data.mode}</span>
+    `;
+  });
+
+  es.addEventListener('mode.redline_activated', e => {
+    const data = JSON.parse(e.data);
+    state.isRedline = true;
+    navCaseMode.textContent = 'REDLINE';
+    navCaseMode.className = 'badge-mode redline';
+    wsModeBadge.textContent = 'REDLINE';
+    wsModeBadge.className = 'badge-mode redline';
+    transformBanner.classList.add('redline');
+    showToast(`REDLINE Activated: ${data.reason}`);
+  });
+
+  es.addEventListener('seat.assembled', e => {
+    const { seat } = JSON.parse(e.data);
+    appendSeatRow(seat);
+  });
+
+  es.addEventListener('seat.completed', e => {
+    const perspective = JSON.parse(e.data);
+    appendBroadenCard(perspective);
+  });
+
+  es.addEventListener('challenge.detected', e => {
+    const ch = JSON.parse(e.data);
+    appendChallengeCard(ch);
+  });
+
+  es.addEventListener('disagreement.detected', e => {
+    const { disagreement } = JSON.parse(e.data);
+    appendDisagreementItem(disagreement);
+  });
+
+  es.addEventListener('stage.completed', e => {
+    const data = JSON.parse(e.data);
+    if (data.transformingQuestion) {
+      tbQuestion.textContent = data.transformingQuestion;
+    }
+
+    if (data.stage === 'assemble') {
+      stageStates.A.textContent = 'COMPLETE';
+      navItems.assemble.classList.add('complete');
+      tbKicker.textContent = 'Stage A — The Question Enters The Conclave';
+      if (data.whoDangerousToLeaveOut) {
+        assemblyRationale.textContent = `Who would be dangerous to leave out? ${data.whoDangerousToLeaveOut}`;
+      }
+    } else if (data.stage === 'broaden') {
+      stageStates.B.textContent = 'COMPLETE';
+      navItems.broaden.classList.add('complete');
+      tbKicker.textContent = 'Stage B — The Question Broadened';
+    } else if (data.stage === 'challenge') {
+      stageStates.C.textContent = 'COMPLETE';
+      navItems.challenge.classList.add('complete');
+      tbKicker.textContent = 'Stage C — Adversarial Attack on Assumptions';
+      if (data.focalContradiction) {
+        focalContradictionText.textContent = data.focalContradiction;
+      }
+    } else if (data.stage === 'deliberate') {
+      stageStates.D.textContent = 'COMPLETE';
+      navItems.deliberate.classList.add('complete');
+      tbKicker.textContent = 'Stage D — Dialectic Friction & Tension';
+      if (data.frictionSummary) {
+        delibFrictionSummary.textContent = data.frictionSummary;
+      }
+    } else if (data.stage === 'emerge') {
+      stageStates.E.textContent = 'COMPLETE';
+      navItems.emerge.classList.add('complete');
+      stageStates.decide.textContent = 'REQUIRED';
+      tbKicker.textContent = 'Stage E — Position Emerged';
+    }
+  });
+
+  es.addEventListener('position.emerging', e => {
+    const data = JSON.parse(e.data);
+    emergencePositionPill.textContent = data.position;
+    emergenceBasisText.textContent = data.basis;
+    emergenceNextActionText.textContent = data.recommendedNextAction;
+  });
+
+  es.addEventListener('human.decision_required', e => {
+    const data = JSON.parse(e.data);
+    showToast('Deliberation complete. Human decision required.');
+    document.getElementById('humanGateShell').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  es.addEventListener('case.completed', e => {
+    const fullCase = JSON.parse(e.data);
+    state.activeCase = fullCase;
+    state.isSubmitting = false;
+    conveneBtn.disabled = false;
+    renderFullCase(fullCase);
+    es.close();
+  });
+
+  es.addEventListener('conclave.interrupted', e => {
+    const data = JSON.parse(e.data);
+    handleInterruption(data.stage, data.message);
+    es.close();
+  });
+
+  es.onerror = () => {
+    console.warn('[CONCLAIVE] EventSource closed or interrupted');
+    es.close();
+    state.isSubmitting = false;
+    conveneBtn.disabled = false;
+  };
+}
+
+// Seat and Card DOM Renderers
+function appendSeatRow(seat) {
+  if (seatsTableBody.innerHTML.includes('SUMMONING DISCIPLINARY SEATS')) {
+    seatsTableBody.innerHTML = '';
+  }
+  const row = document.createElement('div');
+  row.className = 'seat-row';
+  row.id = `row-${seat.id}`;
+  row.innerHTML = `
+    <div class="seat-id ${seat.type === 'DISSENT' ? 'dissent' : ''}">${seat.id.toUpperCase()} / ${seat.type}</div>
+    <div>
+      <div class="seat-main-name">${seat.name}</div>
+      <div class="seat-discipline">${seat.discipline}</div>
+      <div class="seat-mandate">${seat.mandate}</div>
+      <div class="seat-question">"${seat.question}"</div>
+    </div>
+    <div class="seat-status-tag ${seat.type === 'DISSENT' ? 'challenging' : 'active'}">${seat.type === 'DISSENT' ? 'CHALLENGING' : 'ASSEMBLED'}</div>
+  `;
+  seatsTableBody.appendChild(row);
+  seatCountBadge.textContent = `${seatsTableBody.querySelectorAll('.seat-row').length} SEATS`;
+}
+
+function appendBroadenCard(p) {
+  const card = document.createElement('div');
+  card.className = 'b-card';
+  card.innerHTML = `
+    <div class="b-head">
+      <div class="b-name">${p.seatName}</div>
+      <div class="b-disc">Reframe Perspective</div>
+    </div>
+    <div class="b-pos">${p.position}</div>
+    <div style="font-size:14px;color:#cbd2d0;line-height:1.4">${p.reframe}</div>
+    <div class="b-detail">
+      <div>
+        <strong>New Consideration</strong>
+        ${p.newConsideration}
+      </div>
+      <div>
+        <strong>Challenging Assumption</strong>
+        ${p.assumptionChallenged}
+      </div>
+      <div>
+        <strong>Critical Evidence Signal</strong>
+        ${p.importantEvidence}
+      </div>
+      <div>
+        <strong>Cross-Table Inquiry</strong>
+        "${p.questionForAnotherSeat}"
+      </div>
+    </div>
+  `;
+  broadenGrid.appendChild(card);
+}
+
+function appendChallengeCard(ch) {
+  const card = document.createElement('div');
+  card.className = 'challenge-card';
+  card.innerHTML = `
+    <div class="c-head">
+      <div class="c-attacker">${ch.seatName}</div>
+      <div class="c-target">Attacking: ${ch.target}</div>
+    </div>
+    <div class="c-failure">Failure Mode: ${ch.failureMode}</div>
+    <div class="c-grid">
+      <div>
+        <strong>Assumption Doing Heavy Lifting</strong>
+        ${ch.assumptionTested || 'Unverified execution presumption.'}
+      </div>
+      <div>
+        <strong>Missing Empirical Proof</strong>
+        ${ch.missingEvidence || 'Lack of observed behavioral evidence.'}
+      </div>
+      <div>
+        <strong>Contradiction Found</strong>
+        ${ch.contradiction || 'Tension between growth targets and risk controls.'}
+      </div>
+      <div>
+        <strong>What Would Reverse This Stance</strong>
+        ${ch.changedByEvidence || 'Empirical proof from pilot cohort.'}
+      </div>
+    </div>
+  `;
+  challengeList.appendChild(card);
+}
+
+function appendDisagreementItem(text) {
+  const div = document.createElement('div');
+  div.className = 'delib-item';
+  div.innerHTML = `<strong>Contested Friction</strong>${text}`;
+  disagreementsList.appendChild(div);
+}
+
+function renderFullCase(c) {
+  // Record Sidebar
+  recOriginalQ.textContent = c.originalQuestion;
+  recNeutralQ.textContent = c.neutralQuestion;
+
+  recTags.innerHTML = `
+    <span class="tag">${c.problemType}</span>
+    <span class="tag">${c.stakes} STAKES</span>
+    <span class="tag">${c.urgency} URGENCY</span>
+    <span class="tag ${c.mode === 'REDLINE' ? 'danger' : ''}">MODE: ${c.mode}</span>
+    ${c.domains.map(d => `<span class="tag">${d}</span>`).join('')}
+  `;
+
+  recAssumptions.innerHTML = c.assumptions.map(a => `<li>${a}</li>`).join('');
+  recUnknowns.innerHTML = c.unknowns.map(u => `<li>${u}</li>`).join('');
+
+  if (c.deliberation) {
+    delibSummaryText.textContent = c.deliberation.summary;
+    delibFrictionSummary.textContent = c.deliberation.frictionSummary;
+    delibStrongestFor.textContent = c.deliberation.strongestArgumentFor;
+    delibStrongestAgainst.textContent = c.deliberation.strongestArgumentAgainst;
+
+    agreementsList.innerHTML = c.deliberation.areasOfAgreement.map(a => `
+      <div class="delib-item"><strong>Consensus Point</strong>${a}</div>
+    `).join('');
+
+    recUnresolved.innerHTML = c.deliberation.questionsRequiringHumanJudgement.map(q => `<li>${q}</li>`).join('');
+  }
+
+  if (c.emergence) {
+    emergencePositionPill.textContent = c.emergence.position;
+    emergencePositionPill.className = `e-position-pill ${c.emergence.position === 'INSUFFICIENT EVIDENCE' || c.emergence.position === 'DO NOT PROCEED' ? 'insufficient' : ''}`;
+    emergenceBasisText.textContent = c.emergence.basis;
+    emergenceSupportText.textContent = c.emergence.strongestSupport;
+    emergenceObjectionText.textContent = c.emergence.strongestObjection;
+    emergenceNextActionText.textContent = c.emergence.recommendedNextAction;
+
+    emergenceConditionsList.innerHTML = c.emergence.conditions.map(cd => `<li>${cd}</li>`).join('');
+
+    // If Self Critique Case
+    if (c.emergence.selfCritiqueAnalysis) {
+      const sc = c.emergence.selfCritiqueAnalysis;
+      selfCritiqueBlock.style.display = 'block';
+      document.getElementById('scDifferent').textContent = sc.whatMakesConclaiveDifferent;
+      document.getElementById('scMerelyPrompting').textContent = sc.whatRemainsMerelyMultiAgentPrompting;
+      document.getElementById('scEssential').textContent = sc.essentialUXFeatures.join('; ');
+      document.getElementById('scSmallestProof').textContent = sc.smallestCompellingDemoMustProve;
+    }
+  }
+
+  if (c.decisionGate && c.decisionGate.status === 'DECIDED') {
+    renderDecisionRecord(c.decisionGate);
+  }
+}
+
+// Human Decision Modal Handlers
+openDecideModalBtn.addEventListener('click', () => {
+  decisionModal.classList.add('active');
+  modalDecisionNotes.focus();
+});
+closeDecisionModalBtn.addEventListener('click', () => {
+  decisionModal.classList.remove('active');
+});
+
+submitDecisionBtn.addEventListener('click', async () => {
+  if (!state.activeCase) return;
+  const verdict = modalVerdictSelect.value;
+  const notes = modalDecisionNotes.value.trim();
+
+  try {
+    const res = await fetch(`/api/conclave/cases/${state.activeCase.caseId}/decide`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ decision: verdict, notes, status: 'DECIDED' })
+    });
+    const updated = await res.json();
+    state.activeCase = updated;
+    decisionModal.classList.remove('active');
+    renderDecisionRecord(updated.decisionGate);
+    showToast('Human decision sealed in Conclave record.');
+  } catch (err) {
+    showToast('Error recording decision: ' + err.message);
+  }
+});
+
+function renderDecisionRecord(gate) {
+  humanRecordedBox.classList.add('recorded');
+  recordedVerdictText.textContent = gate.humanDecision;
+  recordedNotesText.textContent = gate.notes || 'No supplementary directives specified.';
+  recordedMetaText.textContent = `SEALED AT ${new Date(gate.recordedAt).toLocaleString()} • HUMAN CLEARANCE VALIDATED`;
+
+  recDecisionBlock.style.display = 'block';
+  recDecisionStatus.textContent = gate.humanDecision;
+  openDecideModalBtn.textContent = 'Update Sealed Decision';
+}
+
+gateUnresolvedBtn.addEventListener('click', () => {
+  workspaceRight.style.display = 'block';
+  recUnresolved.scrollIntoView({ behavior: 'smooth' });
+});
+
+// Copy Record Dossier
+copyCaseBtn.addEventListener('click', () => {
+  if (!state.activeCase) {
+    showToast('No active case loaded.');
+    return;
+  }
+  const text = `CONCLAIVE DOSSIER — ${state.activeCase.caseId}
+Question: ${state.activeCase.originalQuestion}
+Neutral Framing: ${state.activeCase.neutralQuestion}
+Mode: ${state.activeCase.mode} | Stakes: ${state.activeCase.stakes}
+Position Emerged: ${state.activeCase.emergence?.position || 'N/A'}
+Basis: ${state.activeCase.emergence?.basis || 'N/A'}
+Conditions:
+${(state.activeCase.emergence?.conditions || []).map(c => `- ${c}`).join('\n')}
+Human Clearance: ${state.activeCase.decisionGate?.humanDecision || 'PENDING'}`;
+
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('Case record dossier copied to clipboard.');
+  });
+});
+
+// Interruption Handling
+function handleInterruption(stage, msg) {
+  errTitle.textContent = `Interruption at Stage ${stage ? stage.toUpperCase() : 'DELIBERATION'}`;
+  errDesc.textContent = msg || 'A disruption occurred during model reasoning. Previous state is preserved.';
+  errorModal.classList.add('active');
+}
+
+errRetryBtn.addEventListener('click', () => {
+  errorModal.classList.remove('active');
+  if (state.lastQuestion) {
+    startConclave();
+  }
+});
 </script>
 </body>
 </html>

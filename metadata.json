@@ -1,0 +1,8 @@
+{
+  "name": "CONCLAIVE™",
+  "description": "CONCLAIVE is an intelligence environment for difficult decisions. Stay with the question.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
